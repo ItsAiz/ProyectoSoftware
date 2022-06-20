@@ -3,12 +3,8 @@
 @section('menuStyles')
     <!--suppress CssReplaceWithShorthandSafely -->
     <style>
-
-        body {
-            background: url({{asset('images/background.jpg')}});
-            background-attachment: fixed;
-            background-position: center;
-            overflow-x: hidden;
+        .round {
+            border-radius: 50%;
         }
 
         /* Estilos generales de la seección y de productos*/
@@ -173,24 +169,26 @@
 
                 <!-- Categorías de los productos  -->
 
-                <div class="row" style="overflow-x: auto;">
+                <div class="row" style="overflow-x: auto;width: 750px;">
 
-                    <div class="btn-group" role="group" aria-label="Basic radio toggle button group">
+                    <div class="btn-group shadow-none " role="group" aria-label="Basic radio toggle button group">
 
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                        <label class="btn btn-outline-success" for="btnradio1" >Comida rápida</label>
+                        @for($i = 1; $i<=4;$i++)
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
+                            <label class="btn text-white btn-outline-success" for="btnradio1" style="border: none" >Comida rápida</label>
 
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked>
-                        <label class="btn btn-outline-success" for="btnradio2">Bebidas</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked>
+                            <label class="btn text-white btn-outline-success" for="btnradio2" style="border: none">Bebidas</label>
 
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked>
-                        <label class="btn btn-outline-success" for="btnradio3">Cafés</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked>
+                            <label class="btn text-white btn-outline-success" for="btnradio3" style="border: none">Cafés</label>
 
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" checked>
-                        <label class="btn btn-outline-success" for="btnradio4">Helados</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" checked>
+                            <label class="btn text-white btn-outline-success" for="btnradio4" style="border: none">Helados</label>
 
-                        <input type="radio" class="btn-check" name="btnradio" id="btnradio5" autocomplete="off" checked>
-                        <label class="btn btn-outline-success" for="btnradio5">Bebidas Alcoholicas</label>
+                            <input type="radio" class="btn-check btn-outline-success" name="btnradio" id="btnradio5" autocomplete="off" checked>
+                            <label class="btn text-white btn-outline-success" for="btnradio5" style="border: none">Bebidas Alcoholicas</label>
+                        @endfor
 
                     </div>
 
@@ -221,7 +219,7 @@
                                                 <h5 class="card-title">Hamburguesa {{$i}}</h5>
                                                 <h6 class="card-title">$10.000</h6>
                                                 <a href="#"
-                                                   class="btn custom-product-selection-button">Seleccionar</a>
+                                                   class="btn custom-product-selection-button"style="box-shadow: 0px 0px 2px 2px #E7EAE4">Seleccionar</a>
                                             </div>
 
                                         </div>
@@ -234,16 +232,16 @@
 
                         </div>
 
-                        <button class="carousel-control-prev custom-carousel-control-prev" type="button"
+                        <button class="carousel-control-prev custom-carousel-control-prev round" type="button"
                                 data-bs-target="#carouselExampleControls"
-                                data-bs-slide="prev">
+                                data-bs-slide="prev" style="background: transparent">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
 
-                        <button class="carousel-control-next custom-carousel-control-next" type="button"
+                        <button class="carousel-control-next custom-carousel-control-next round" type="button"
                                 data-bs-target="#carouselExampleControls"
-                                data-bs-slide="next">
+                                data-bs-slide="nex" style="background: transparent">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -254,16 +252,16 @@
 
             </div>
 
+
             <!-- Panel de pedido -->
 
-            <div class="col-12 col-lg-5">
+            <div class="col-12 col-lg-5 ">
 
-                <div class="card" style="background-color: rgba(255,255,255,0.5)">
+                <div class="card custom-levitation-effect" style="background-color: rgba(255,255,255,0.5); box-shadow: 0px 0px 5px 5px #E7EAE4">
                     <div class="card-header d-flex justify-content-center">
                         <h2 style="color: white">Tu pedido</h2>
                     </div>
-
-                    <ul class="list-group list-group-flush" style="overflow-y: auto; height: 17rem;">
+                    <ul class="list-group list-group-flush " style="overflow-y: auto; height: 17rem;">
                         @for($i=0; $i<10; $i++)
                             <li class="list-group-item" style="background-color: rgba(0,0,0,0.75); margin-top: 1px">
 

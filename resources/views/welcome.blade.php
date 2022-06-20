@@ -16,18 +16,27 @@
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <link href='https://fonts.googleapis.com/css?family=Schoolbell' rel='stylesheet'>
 
     <!-- Icons -->
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/styles.scss') }}" rel="stylesheet">
 
+    <style>
+        body{
+            opacity: 10;
+            background: url({{asset('images/tot_fond.jpg')}});
+            overflow-x: hidden;
+            backdrop-filter: blur(7px);
+            font-family: 'Schoolbell', serif;font-size: 22px;
+        }
+    </style>
     @yield('menuStyles')
 
 </head>
-
 <body>
 
 <!-- NABVAR -->
@@ -36,6 +45,7 @@
 @include('components.register')
 
 <!-- CONTENT -->
+@yield('start')
 @yield('menu')
 
 <!-- FOOTER -->
@@ -43,10 +53,10 @@
 
 <!-- Scripts -->
 <script src="{{asset('js/app.js')}}"></script>
+
 @yield('loginScript')
 @yield('registerScript')
 @yield('menuScript')
-
 </body>
 
 </html>

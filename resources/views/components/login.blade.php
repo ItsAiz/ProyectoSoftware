@@ -1,13 +1,17 @@
-<!-- Modal -->
-<div class="modal fade" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
+@section('loginModalStyle')
+    <style>
 
+    </style>
+@endsection
+<!-- Modal -->
+<div class="modal fade text-white" id="loginModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true" >
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content " style="background-color: rgba(0, 0, 0, 0.6);">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Iniciar Sesión</h5>
+                <button type="button" class="btn-close  btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body" >
                 <!-- Inicio -->
 
                 <form method="POST" id="loginForm">
@@ -15,7 +19,7 @@
 
                     <div class="form-group row">
                         <label for="emailInputLogin"
-                               class="col-md-4 col-form-label text-md-right">{{ __('E-Mail Address') }}</label>
+                               class="col-md-4 col-form-label text-md-right">{{ __('E-mail Address') }}</label>
 
                         <div class="col-md-6">
                             <input id="emailInputLogin" type="email" class="form-control" name="email"
@@ -27,10 +31,6 @@
 
                         </div>
                     </div>
-
-                    <br>
-                    <br>
-
 
                     <div class="form-group row">
                         <label for="password" class="col-md-4 col-form-label text-md-right">{{ __('Password') }}</label>
@@ -47,9 +47,6 @@
                         </div>
                     </div>
 
-                    <br>
-                    <br>
-
 
                     <div class="form-group row">
                         <div class="col-md-6 offset-md-4">
@@ -58,7 +55,7 @@
                                     {{ old('remember') ? 'checked' : '' }}>
 
                                 <label class="form-check-label" for="remember">
-                                    {{ __('Remember Me') }}
+                                    {{ __('Recordar Contraseña') }}
                                 </label>
                             </div>
                         </div>
@@ -67,24 +64,18 @@
                     <div class="form-group row mb-0">
                         <div class="col-md-8 offset-md-4">
                             <button type="submit" class="btn btn-primary">
-                                {{ __('Login') }}
+                                {{ __('Ingresar') }}
                             </button>
 
                             @if (Route::has('password.request'))
                                 <a class="btn btn-link" href="{{ route('password.request') }}">
-                                    {{ __('Forgot Your Password?') }}
+                                    {{ __('¿Olvidaste tu contraseña?') }}
                                 </a>
                             @endif
                         </div>
                     </div>
                 </form>
-
                 <!-- Fin -->
-
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-                <button type="button" class="btn btn-primary">Save changes</button>
             </div>
         </div>
     </div>
