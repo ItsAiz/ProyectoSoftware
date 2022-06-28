@@ -1,8 +1,9 @@
 @extends('welcome')
 
 @section('menuStyles')
-    <!--suppress CssReplaceWithShorthandSafely -->
+
     <style>
+
         .round {
             border-radius: 50%;
         }
@@ -13,9 +14,6 @@
             margin-top: 6rem;
             margin-bottom: 6rem;
         }
-
-        /*    */
-
 
         .custom-product-selection-button {
             width: 80%;
@@ -157,6 +155,7 @@
         }
 
     </style>
+
 @endsection
 
 @section('menu')
@@ -174,20 +173,28 @@
                     <div class="btn-group shadow-none " role="group" aria-label="Basic radio toggle button group">
 
                         @for($i = 1; $i<=4;$i++)
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off" checked>
-                            <label class="btn text-white btn-outline-success" for="btnradio1" style="border: none" >Comida rápida</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
+                                   checked>
+                            <label class="btn text-white btn-outline-success" for="btnradio1" style="border: none">Comida
+                                rápida</label>
 
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off" checked>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
+                                   checked>
                             <label class="btn text-white btn-outline-success" for="btnradio2" style="border: none">Bebidas</label>
 
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off" checked>
-                            <label class="btn text-white btn-outline-success" for="btnradio3" style="border: none">Cafés</label>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
+                                   checked>
+                            <label class="btn text-white btn-outline-success" for="btnradio3"
+                                   style="border: none">Cafés</label>
 
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off" checked>
+                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"
+                                   checked>
                             <label class="btn text-white btn-outline-success" for="btnradio4" style="border: none">Helados</label>
 
-                            <input type="radio" class="btn-check btn-outline-success" name="btnradio" id="btnradio5" autocomplete="off" checked>
-                            <label class="btn text-white btn-outline-success" for="btnradio5" style="border: none">Bebidas Alcoholicas</label>
+                            <input type="radio" class="btn-check btn-outline-success" name="btnradio" id="btnradio5"
+                                   autocomplete="off" checked>
+                            <label class="btn text-white btn-outline-success" for="btnradio5" style="border: none">Bebidas
+                                Alcoholicas</label>
                         @endfor
 
                     </div>
@@ -219,7 +226,8 @@
                                                 <h5 class="card-title">Hamburguesa {{$i}}</h5>
                                                 <h6 class="card-title">$10.000</h6>
                                                 <a href="#"
-                                                   class="btn custom-product-selection-button"style="box-shadow: 0px 0px 2px 2px #E7EAE4">Seleccionar</a>
+                                                   class="btn custom-product-selection-button"
+                                                   style="box-shadow: 0 0 2px 2px #E7EAE4">Seleccionar</a>
                                             </div>
 
                                         </div>
@@ -257,7 +265,8 @@
 
             <div class="col-12 col-lg-5 ">
 
-                <div class="card custom-levitation-effect" style="background-color: rgba(255,255,255,0.5); box-shadow: 0px 0px 5px 5px #E7EAE4">
+                <div class="card custom-levitation-effect"
+                     style="background-color: rgba(255,255,255,0.5); box-shadow: 0 0 5px 5px #E7EAE4">
                     <div class="card-header d-flex justify-content-center">
                         <h2 style="color: white">Tu pedido</h2>
                     </div>
@@ -271,7 +280,7 @@
 
                                         <select class="form-select" aria-label="Default select example">
                                             @for($j=1; $j<6; $j++)
-                                            <option value="1">{{$j}}</option>
+                                                <option value="1">{{$j}}</option>
                                             @endfor
                                         </select>
 
@@ -286,7 +295,8 @@
                                     </div>
 
                                     <div class="col-2 col-sm-2" style="text-align: center">
-                                        <a class="btn btn-danger" href="#" style="background-color: rgba(255,0,0,0.5); color: white">
+                                        <a class="btn btn-danger" href="#"
+                                           style="background-color: rgba(255,0,0,0.5); color: white">
                                             <i class="fa-solid fa-trash"> </i>
                                         </a>
                                     </div>
@@ -310,8 +320,8 @@
 @endsection
 
 @section('menuScript')
-    <script>
 
+    <script>
         window.addEventListener("resize", function () {
             this.location.reload()
         })
@@ -359,4 +369,5 @@
         }
 
     </script>
+
 @endsection

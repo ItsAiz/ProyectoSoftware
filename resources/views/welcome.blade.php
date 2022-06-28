@@ -11,36 +11,35 @@
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
+    <!-- favicon -->
+    <link rel="shortcut icon" href="favicon.png">
+
     <!-- Title -->
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <title>11&6 GASTRO PUB</title>
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.3/font/bootstrap-icons.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
     <!-- Fonts -->
     <link rel="dns-prefetch" href="//fonts.gstatic.com">
     <link href='https://fonts.googleapis.com/css?family=Schoolbell' rel='stylesheet'>
 
-    <!-- Icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
-
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/styles.scss') }}" rel="stylesheet">
+    <link href="{{ asset('css/globalStyles.css') }}" rel="stylesheet">
 
-    <style>
-        body{
-            opacity: 10;
-            background: url({{asset('images/tot_fond.jpg')}});
-            overflow-x: hidden;
-            backdrop-filter: blur(7px);
-            font-family: 'Schoolbell', serif;font-size: 22px;
-        }
-    </style>
+    <!-- Style sections -->
+    @yield('startStyles')
     @yield('menuStyles')
 
+
 </head>
+
 <body>
 
-<!-- NABVAR -->
-@include('components.nabvar')
+<!-- NAVBAR -->
+@include('components.navbar')
 @include('components.login')
 @include('components.register')
 
@@ -54,9 +53,12 @@
 <!-- Scripts -->
 <script src="{{asset('js/app.js')}}"></script>
 
+<!-- Script sections -->
+@yield('navbarScript')
 @yield('loginScript')
 @yield('registerScript')
 @yield('menuScript')
+
 </body>
 
 </html>
