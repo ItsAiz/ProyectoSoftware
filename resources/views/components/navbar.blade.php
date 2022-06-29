@@ -20,12 +20,12 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link {{request()->routeIs('menu') ? 'link-active' : '' }}" aria-current="page"
-                       href="{{ route('menu') }}" id="link-menu"> Menú</a>
+                    <a class="nav-link" aria-current="page" href="{{ route('menu') }}" id="link-menu"> Menú</a>
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="#" id="link-pedido"> Haz tu pedido</a>
+                    <a class="nav-link {{request()->routeIs('makeOrder') ? 'link-active' : '' }}" aria-current="page"
+                       href="{{ route('makeOrder') }}" id="link-pedido"> Haz tu pedido</a>
                 </li>
 
                 @if (Route::has('login'))

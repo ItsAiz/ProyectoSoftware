@@ -31,7 +31,7 @@
 
     <!-- Style sections -->
     @yield('startStyles')
-    @yield('menuStyles')
+    @yield('makeOrderStyles')
 
 
 </head>
@@ -45,7 +45,7 @@
 
 <!-- CONTENT -->
 @yield('start')
-@yield('menu')
+@yield('makeOrder')
 
 <!-- FOOTER -->
 @include('components.footer')
@@ -57,7 +57,7 @@
 @yield('navbarScript')
 @yield('loginScript')
 @yield('registerScript')
-@yield('menuScript')
+@yield('makeOrderScript')
 
 </body>
 

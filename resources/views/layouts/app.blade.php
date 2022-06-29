@@ -5,98 +5,127 @@
 <head>
 
     <!-- Required meta tags -->
-
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
     <!-- CSRF Token -->
-
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
-    <title>{{ config('app.name', 'Laravel') }}</title>
+    <!-- favicon -->
+    <link rel="shortcut icon" href="favicon.png">
 
-    <!-- Scripts -->
+    <!-- Title -->
+    <title>11&6 GASTRO PUB</title>
 
-
-
-    <!-- Fonts -->
-
-    <link rel="dns-prefetch" href="//fonts.gstatic.com">
-    <link href="https://fonts.googleapis.com/css?family=Nunito" rel="stylesheet">
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.1/css/all.min.css">
 
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/dashboardStyles.css') }}" rel="stylesheet">
 
 </head>
 
-<body>
+<body id="body">
 
-    <div id="app">
+<div id="app">
 
-        <nav class="navbar navbar-expand-md navbar-light bg-white shadow-sm">
-            <div class="container">
-                <a class="navbar-brand" href="{{ url('/') }}">
-                    {{ config('app.name', 'Laravel') }}
-                </a>
-                <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-                    data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent"
-                    aria-expanded="false" aria-label="{{ __('Toggle navigation') }}">
-                    <span class="navbar-toggler-icon"></span>
-                </button>
+    <header>
 
-                <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="navbar-nav me-auto">
+        <div class="icon__menu">
+            <i class="fas fa-bars" id="btn_open"></i>
+        </div>
 
-                    </ul>
+        <div class="user__navbar">
 
-                    <!-- Right Side Of Navbar -->
-                    <ul class="navbar-nav ms-auto">
-                        <!-- Authentication Links -->
-                        @guest
+            <ul class="navbar-nav ms-auto">
 
-                        @if (Route::has('login'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('login') }}">{{ __('Login') }}</a>
-                        </li>
-                        @endif
+                <li class="nav-item dropdown">
 
-                        @if (Route::has('register'))
-                        <li class="nav-item">
-                            <a class="nav-link" href="{{ route('register') }}">{{ __('Register') }}</a>
-                        </li>
-                        @endif
-                        @else
-                        <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button"
-                                data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                                {{ Auth::user()->name }}
-                            </a>
+                    <a id="navbarDropdown" class="nav-link dropdown-toggle text-black" href="#" role="button"
+                       data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
+                        {{ Auth::user()->name }}
+                    </a>
 
-                            <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                    <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
+
+                        <a class="dropdown-item" href="{{ route('start') }}">
+                            <i class="fa-solid fa-burger"></i> Página principal
+                        </a>
+
+                        <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
                                                      document.getElementById('logout-form').submit();">
-                                    {{ __('Logout') }}
-                                </a>
+                            <i class="fa-solid fa-right-from-bracket"></i> Cerrar sesión
+                        </a>
 
-                                <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
-                                    @csrf
-                                </form>
-                            </div>
-                        </li>
-                        @endguest
-                    </ul>
+                        <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                            @csrf
+                        </form>
+
+                    </div>
+
+                </li>
+
+            </ul>
+
+        </div>
+
+    </header>
+
+    <div class="menu__side" id="menu_side">
+
+        <div class="name__page">
+            <i class="fa-solid fa-star"></i>
+            <span>Gastro&nbsp;Pub</span>
+        </div>
+
+        <div class="container" style="margin-left: 10px;">
+            <div style="width: auto; border-style: solid; border-top: 2px; border-color: rgba(255,255,255,0.7);"></div>
+        </div>
+
+        <div class="options__menu">
+
+            <a href="{{ route('home') }}" class="{{request()->routeIs('home') ? 'selected' : ''}}">
+                <div class="option">
+                    <i class="fas fa-home" title="Inicio"></i>
+                    <span>Inicio</span>
                 </div>
-            </div>
-        </nav>
+            </a>
 
-        <main class="py-4">
-            @yield('content')
-        </main>
+            <a href="#">
+                <div class="option">
+                    <i class="far fa-file" title="Portafolio"></i>
+                    <span>Portafolio</span>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="option">
+                    <i class="fas fa-video" title="Cursos"></i>
+                    <span>Cursos</span>
+                </div>
+            </a>
+
+            <a href="#">
+                <div class="option">
+                    <i class="far fa-sticky-note" title="Blog"></i>
+                    <span>Blog</span>
+                </div>
+            </a>
+
+        </div>
+
     </div>
 
+    <main class="py-4">
+        @yield('content')
+    </main>
 
-    <script src="{{ asset('js/app.js') }}" defer></script>
+</div>
+
+<!-- Scripts -->
+<script src="{{asset('js/app.js')}}"></script>
+<script src="{{asset('js/dashboardScript.js')}}"></script>
 
 </body>
 

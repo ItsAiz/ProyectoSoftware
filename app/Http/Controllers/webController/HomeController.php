@@ -1,7 +1,8 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\webController;
 
+use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Foundation\Application;
@@ -16,7 +17,7 @@ class HomeController extends Controller
 
     public function index(): Factory|View|Application
     {
-        return view('home');
+        return view('components.home');
     }
 
 }

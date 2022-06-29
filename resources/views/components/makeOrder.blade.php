@@ -1,6 +1,6 @@
 @extends('welcome')
 
-@section('menuStyles')
+@section('makeOrderStyles')
 
     <style>
 
@@ -10,7 +10,7 @@
 
         /* Estilos generales de la seección y de productos*/
 
-        .custom-menu-section {
+        .custom-makeOrder-section {
             margin-top: 6rem;
             margin-bottom: 6rem;
         }
@@ -39,7 +39,7 @@
         }
 
         @media (min-width: 768px) {
-            .custom-menu-section {
+            .custom-makeOrder-section {
                 margin-top: 7rem;
                 margin-bottom: 6rem;
             }
@@ -158,9 +158,9 @@
 
 @endsection
 
-@section('menu')
+@section('makeOrder')
 
-    <div class="container-fluid custom-menu-section">
+    <div class="container-fluid custom-makeOrder-section">
 
         <div class="row">
 
@@ -319,7 +319,7 @@
     </div>
 @endsection
 
-@section('menuScript')
+@section('makeOrderScript')
 
     <script>
         window.addEventListener("resize", function () {
