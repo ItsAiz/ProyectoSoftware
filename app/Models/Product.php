@@ -5,7 +5,10 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Client extends Model
+/**
+ * @method static paginate(int $int)
+ */
+class Product extends Model
 {
     use HasFactory;
 
@@ -15,9 +18,13 @@ class Client extends Model
 
     protected $fillable = [
         'name',
-        'lastName',
-        'documentType',
-        'documentNumber'
+        'description',
+        'price',
+        'stock',
+        'min_stock',
+        'reference',
+        'iva',
+        'image'
     ];
 
 }

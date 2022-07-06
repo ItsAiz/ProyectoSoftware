@@ -4,6 +4,10 @@
 
     <style>
 
+        body {
+            background: gray;
+        }
+
         .round {
             border-radius: 50%;
         }

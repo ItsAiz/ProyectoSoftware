@@ -44,13 +44,13 @@
 
                     <a id="navbarDropdown" class="nav-link dropdown-toggle text-black" href="#" role="button"
                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->name }}
+                        {{ Auth::user()->email }}
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
 
                         <a class="dropdown-item" href="{{ route('start') }}">
-                            <i class="fa-solid fa-burger"></i> Página principal
+                            <i class="fa-regular fa-file-lines"></i> Página principal
                         </a>
 
                         <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
@@ -87,31 +87,94 @@
 
             <a href="{{ route('home') }}" class="{{request()->routeIs('home') ? 'selected' : ''}}">
                 <div class="option">
-                    <i class="fas fa-home" title="Inicio"></i>
+                    <i class="fas fa-home"></i>
                     <span>Inicio</span>
                 </div>
             </a>
 
-            <a href="#">
-                <div class="option">
-                    <i class="far fa-file" title="Portafolio"></i>
-                    <span>Portafolio</span>
-                </div>
-            </a>
+            <!-- Admin -->
 
-            <a href="#">
-                <div class="option">
-                    <i class="fas fa-video" title="Cursos"></i>
-                    <span>Cursos</span>
-                </div>
-            </a>
+                <a href="{{ route('product/management') }}"
+                   class="{{request()->routeIs('product/management') ? 'selected' : ''}}">
+                    <div class="option">
+                        <i class="fa-solid fa-burger"></i>
+                        <span>Gestión&nbsp;productos</span>
+                    </div>
+                </a>
 
-            <a href="#">
-                <div class="option">
-                    <i class="far fa-sticky-note" title="Blog"></i>
-                    <span>Blog</span>
-                </div>
-            </a>
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <span>Gestión&nbsp;empleados</span>
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-users"></i>
+                        <span>Registro&nbsp;clientes</span>
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Registro&nbsp;reservas</span>
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Registro&nbsp;domicilios</span>
+                    </div>
+                </a>
+
+        <!-- Empleado -->
+
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-user-tie"></i>
+                        <span>Datos&nbsp;personales</span>
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-book"></i>
+                        <span>Gestión&nbsp;reservas</span>
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Gestión&nbsp;domicilios</span>
+                    </div>
+                </a>
+
+            <!-- Cliente -->
+
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-book-open"></i>
+                        <span>Historial&nbsp;actividades</span>
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-bell-concierge"></i>
+                        <span>Solicitar&nbsp;reserva</span>
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Solicitar&nbsp;domicilio</span>
+                    </div>
+                </a>
 
         </div>
 
