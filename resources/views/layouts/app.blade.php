@@ -102,7 +102,8 @@
                     </div>
                 </a>
 
-                <a href="#">
+                <a href="{{ route('employee/management') }}"
+                    class="{{request()->routeIs('employee/management') ? 'selected' : ''}}">
                     <div class="option">
                         <i class="fa-solid fa-user-tie"></i>
                         <span>Gestión&nbsp;empleados</span>
@@ -191,5 +192,4 @@
 <script src="{{asset('js/dashboardScript.js')}}"></script>
 
 </body>
-
 </html>

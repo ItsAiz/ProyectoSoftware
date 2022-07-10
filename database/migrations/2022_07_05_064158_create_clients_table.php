@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('lastName');
             $table->string('documentType');
-            $table->string('documentNumber');
+            $table->integer('documentNumber');
         });
     }
 

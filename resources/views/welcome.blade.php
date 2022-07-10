@@ -53,11 +53,13 @@
 <!-- Scripts -->
 <script src="{{asset('js/app.js')}}"></script>
 
+
 <!-- Script sections -->
 @yield('navbarScript')
 @yield('loginScript')
 @yield('registerScript')
 @yield('makeOrderScript')
+
 
 </body>
 

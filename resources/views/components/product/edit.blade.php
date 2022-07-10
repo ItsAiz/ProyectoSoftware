@@ -11,9 +11,14 @@
                 {{method_field('PATCH')}}
                 @include('components.product.form', ['mod'=>'Editar'] )
             </form>
-
         </div>
 
     </div>
-
 @endsection
+<!--<script>
+    disableFields()
+    function disableFields(){
+        document.getElementById('divEmail').style.display = 'none';
+        document.getElementById('divPasswd').style.display = 'none';
+    }
+</script>-->

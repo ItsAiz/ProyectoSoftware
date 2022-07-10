@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\WebController\ClientController;
+use App\Http\Controllers\WebController\EmployeeController;
 use App\Http\Controllers\WebController\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController\WelcomeController;
@@ -19,11 +20,6 @@ Auth::routes();
 /* Rutas de registro y creación de clientes */
 Route::post('/client/store', [ClientController::class, 'store'])->name('client/store');
 
-
-
-
-
-
 /* Ruta de inicio modulos internos */
 Route::get('/home', [HomeController::class, 'index'])->name('home');
 
@@ -34,3 +30,12 @@ Route::post('/product/store', [ProductController::class, 'store']);
 Route::get('/product/edit/{product}', [ProductController::class, 'edit']);
 Route::patch('/product/update/{product}', [ProductController::class, 'update']);
 Route::delete('/product/destroy/{product}', [ProductController::class, 'destroy']);
+
+/* Rutas gestión empleados*/
+
+Route::get('/employee/management', [EmployeeController::class,'index'])->name('employee/management');
+Route::get('/employee/create', [EmployeeController::class, 'create']);
+Route::post('/employee/store', [EmployeeController::class, 'store']);
+Route::get('/employee/edit/{employee}', [EmployeeController::class, 'edit']);
+Route::patch('/employee/update/{employee}', [EmployeeController::class, 'update']);
+Route::delete('/employee/destroy/{employee}', [EmployeeController::class, 'destroy']);
