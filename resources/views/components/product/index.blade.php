@@ -6,9 +6,9 @@
 
         <h1 class="text-center mb-4" style="font-family: 'Arial Rounded MT Bold', sans-serif">Productos</h1>
 
-        @if(Session::has('message'))
+        @if(\Illuminate\Support\Facades\Session::has('message'))
             <div class="alert alert-success alert-dismissible fade show">
-                {{Session::get('message')}}
+                {{\Illuminate\Support\Facades\Session::get('message')}}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
@@ -26,17 +26,18 @@
                     <th>Nombre</th>
                     <th>Descripción</th>
                     <th>Precio</th>
-                    <th>Cantidad&nbsp;en&nbsp;stock</th>
-                    <th>Cantidad&nbsp;en&nbsp;stock&nbsp;minima</th>
+                    <th>Stock</th>
+                    <th>Stock&nbsp;mínimo</th>
                     <th>Referencia</th>
                     <th>Iva</th>
                     <th>Imagen</th>
+                    <th>Categoría</th>
                     <th>Acciones</th>
                 </tr>
 
                 </thead>
 
-                <tbody class="text-center">
+                <tbody class="text-center align-middle">
 
                 @foreach ($products as $product)
 
@@ -45,15 +46,17 @@
                         <td>{{$product->name}}</td>
                         <td>{{$product->description}}</td>
                         <td>{{$product->price}}</td>
-                        <td>{{$product->stock}}</td>
-                        <td>{{$product->min_stock}}</td>
-                        <td>{{$product->reference}}</td>
+                        <td>{{$product->stockAmount}}</td>
+                        <td>{{$product->stockMin}}</td>
+                        <td>{{$product->referenceNumber}}</td>
                         <td>{{$product->iva}}</td>
 
                         <td>
-                            <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$product->image}}"
-                                 width="100" alt="">
+                            <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$product->image }}"
+                                 width="100" alt="image_product">
                         </td>
+
+                        <td>{{$product->category->name}}</td>
 
                         <td>
 
@@ -62,7 +65,8 @@
                             <form action="{{url('/product/destroy/'.$product->id)}}" class="d-inline" method='post'>
                                 @csrf
                                 {{method_field('DELETE')}}
-                                <input type='submit' onclick="return confirm('¿Desea borrar el producto?')" value="Borrar" class="btn btn-danger">
+                                <input type='submit' onclick="return confirm('¿Desea borrar el producto?')"
+                                       value="Borrar" class="btn btn-danger">
                             </form>
 
                         </td>

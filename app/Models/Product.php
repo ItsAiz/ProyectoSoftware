@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
 /**
  * @method static paginate(int $int)
@@ -12,20 +13,25 @@ class Product extends Model
 {
     use HasFactory;
 
-    public $timestamps = false;/** huevadas  */
+    public $timestamps = false;
 
-    protected $guarded = ['id'];/** Campos que no se van a permitir (por estar incrementable)*/
+    protected $guarded = ['id'];
 
-    protected $fillable = [ /** campos para que se permitan las inserciones en la bd
-     , si llega un campo adicional no se admite*/
+    protected $fillable = [
         'name',
         'description',
         'price',
-        'stock',
-        'min_stock',
-        'reference',
+        'stockAmount',
+        'stockMin',
+        'referenceNumber',
         'iva',
-        'image'
+        'image',
+        'category_id'
     ];
+
+    public function category(): BelongsTo
+    {
+        return $this->belongsTo(Category::class);
+    }
 
 }

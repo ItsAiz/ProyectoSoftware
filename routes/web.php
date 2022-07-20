@@ -32,7 +32,6 @@ Route::patch('/product/update/{product}', [ProductController::class, 'update']);
 Route::delete('/product/destroy/{product}', [ProductController::class, 'destroy']);
 
 /* Rutas gestión empleados*/
-
 Route::get('/employee/management', [EmployeeController::class,'index'])->name('employee/management');
 Route::get('/employee/create', [EmployeeController::class, 'create']);
 Route::post('/employee/store', [EmployeeController::class, 'store']);

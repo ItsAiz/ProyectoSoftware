@@ -1,5 +1,5 @@
 <h1 class="text-center mt-md-5" style="font-family: 'Arial Rounded MT Bold', sans-serif">
-{{$mod}} Producto
+    {{$mod}} Producto
 </h1>
 
 @if(count($errors)>0)
@@ -21,28 +21,33 @@
 
 <div class="form-group mt-3">
     <label for="description">Descripción</label>
-    <input type="text" class="form-control" name="description" value="{{isset($product->description)?$product->description:old('description')}}">
+    <input type="text" class="form-control" name="description"
+           value="{{isset($product->description)?$product->description:old('description')}}">
 
 </div>
 
 <div class="form-group mt-3">
     <label for="price">Precio</label>
-    <input type="number" class="form-control" name="price" value="{{isset($product->price)?$product->price:old('price')}}">
+    <input type="number" class="form-control" name="price"
+           value="{{isset($product->price)?$product->price:old('price')}}">
 </div>
 
 <div class="form-group mt-3">
-    <label for="stock">Stock</label>
-    <input type="number" class="form-control" name="stock" value="{{isset($product->stock)?$product->stock:old('stock')}}">
+    <label for="stockAmount">Stock</label>
+    <input type="number" class="form-control" name="stockAmount"
+           value="{{isset($product->stockAmount)?$product->stockAmount:old('stockAmount')}}">
 </div>
 
 <div class="form-group mt-3">
-    <label for="min_stock">Stock mínimo</label>
-    <input type="number" class="form-control" name="min_stock" value="{{isset($product->min_stock)?$product->min_stock:old('min_stock')}}">
+    <label for="stockMin">Stock mínimo</label>
+    <input type="number" class="form-control" name="stockMin"
+           value="{{isset($product->stockMin)?$product->stockMin:old('stockMin')}}">
 </div>
 
 <div class="form-group mt-3">
-    <label for="reference">Referencia</label>
-    <input type="text" class="form-control" name="reference" value="{{isset($product->reference)?$product->reference:old('reference')}}">
+    <label for="referenceNumber">Referencia</label>
+    <input type="text" class="form-control" name="referenceNumber"
+           value="{{isset($product->referenceNumber)?$product->referenceNumber:old('referenceNumber')}}">
 </div>
 
 <div class="form-group mt-3">
@@ -52,11 +57,27 @@
 
 <div class="form-group mt-3">
     <label for="image">Imagen</label>
-    <br>
-    @if(isset($project->image))
-        <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$project->image}}" width="100" alt="">
+    @if(isset($product->image))
+        <br>
+        <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$product->image}}" width="100" alt="">
     @endif
-    <input type="file" name="image">
+    <input type="file" class="form-control" name="image">
+</div>
+
+<div class="form-group mt-3">
+    <label for="category_id">Categoría</label>
+    <select class="form-select form-control" name="category_id">
+        @foreach(\App\Models\Category::all() as $item)
+
+            @if(isset($product))
+                <option
+                    value="{{$item->id}}" {{$item->id == $product->category_id ? 'selected' : '' }}>{{$item->name}}</option>
+            @else
+                <option value="{{ $item->id }}">{{$item->name}}</option>
+            @endif
+
+        @endforeach
+    </select>
 </div>
 
 <div class="mt-4 mb-5">

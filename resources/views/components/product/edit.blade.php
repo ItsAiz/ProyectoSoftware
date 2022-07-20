@@ -14,11 +14,5 @@
         </div>
 
     </div>
+
 @endsection
-<!--<script>
-    disableFields()
-    function disableFields(){
-        document.getElementById('divEmail').style.display = 'none';
-        document.getElementById('divPasswd').style.display = 'none';
-    }
-</script>-->
