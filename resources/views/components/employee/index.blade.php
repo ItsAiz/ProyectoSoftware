@@ -58,7 +58,7 @@
                             <form action="{{url('/employee/destroy/'.$employee->id)}}" class="d-inline" method='post'>
                                 @csrf
                                 {{method_field('DELETE')}}
-                                <input type='submit' onclick="return confirm('¿Desea borrar el producto?')" value="Borrar" class="btn btn-danger">
+                                <input type='submit' onclick="return confirm('¿Desea borrar el empleado indicado?')" value="Borrar" class="btn btn-danger">
                             </form>
                         </td>
 
