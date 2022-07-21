@@ -12,7 +12,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="favicon.png">
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
 
     <!-- Title -->
     <title>11&6 GASTRO PUB</title>
@@ -33,7 +33,6 @@
     @yield('startStyles')
     @yield('makeOrderStyles')
 
-
 </head>
 
 <body>
@@ -53,13 +52,11 @@
 <!-- Scripts -->
 <script src="{{asset('js/app.js')}}"></script>
 
-
 <!-- Script sections -->
 @yield('navbarScript')
 @yield('loginScript')
 @yield('registerScript')
 @yield('makeOrderScript')
-
 
 </body>
 

@@ -22,7 +22,7 @@ class ProductUpdateRequest extends FormRequest
             'stockMin' => ['required', 'numeric', 'min:1'],
             'referenceNumber' => ['required', 'string', 'max:255'],
             'iva' => ['required', 'numeric', ' min:1', 'max:100'],
-            'image' => ['max:1000', 'mimes:jpeg,png,jpg'],
+            'image' => ['max:5000', 'dimensions:width=1338,height=714', 'mimes:jpeg,png,jpg'],
             'category_id' => ['required', 'numeric', 'min:1', 'max:5']
         ];
     }

@@ -198,15 +198,11 @@ body {
     transform: translateY(-8px);
 }
 
-
 .button-select:focus {
     background: #eea520;
 }
 
-
-/* Hacer que se vea bien los modales */
-
-.modal-open{
-    padding:0 !important;
+.modal-open {
+    padding: 0 !important;
     overflow-y: auto !important;
 }

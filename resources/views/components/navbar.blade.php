@@ -25,7 +25,7 @@
 
                 <li class="nav-item">
                     <a class="nav-link {{request()->routeIs('makeOrder') ? 'link-active' : '' }}" aria-current="page"
-                       href="{{ route('makeOrder') }}" id="link-pedido"> Haz tu pedido</a>
+                       href="{{ url('/makeOrder/' . 1) }}" id="link-pedido"> Haz tu pedido</a>
                 </li>
 
                 @if (Route::has('login'))

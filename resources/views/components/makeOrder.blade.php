@@ -1,20 +1,14 @@
 @extends('welcome')
 
 @section('makeOrderStyles')
-
     <style>
 
         body {
-            background: gray;
+            background: url({{asset('images/wallpapers/prueba6.png')}});
+            overflow-x: hidden;
         }
 
-        .round {
-            border-radius: 50%;
-        }
-
-        /* Estilos generales de la seección y de productos*/
-
-        .custom-makeOrder-section {
+        .custom-menu-section {
             margin-top: 6rem;
             margin-bottom: 6rem;
         }
@@ -43,8 +37,8 @@
         }
 
         @media (min-width: 768px) {
-            .custom-makeOrder-section {
-                margin-top: 7rem;
+            .custom-menu-section {
+                margin-top: 11rem;
                 margin-bottom: 6rem;
             }
         }
@@ -109,8 +103,6 @@
             box-shadow: 0 0 15px #ffffff80;
         }
 
-        /* Estilos del carrusel */
-
         .custom-products-section {
             position: relative;
 
@@ -159,12 +151,10 @@
         }
 
     </style>
-
 @endsection
 
 @section('makeOrder')
-
-    <div class="container-fluid custom-makeOrder-section">
+    <div class="container-fluid custom-menu-section">
 
         <div class="row">
 
@@ -172,34 +162,18 @@
 
                 <!-- Categorías de los productos  -->
 
-                <div class="row" style="overflow-x: auto;width: 750px;">
+                <div class="row" style="overflow-x: auto;">
 
-                    <div class="btn-group shadow-none " role="group" aria-label="Basic radio toggle button group">
+                    <div class="btn-group">
 
-                        @for($i = 1; $i<=4;$i++)
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio1" autocomplete="off"
-                                   checked>
-                            <label class="btn text-white btn-outline-success" for="btnradio1" style="border: none">Comida
-                                rápida</label>
+                        @foreach(\App\Models\Category::all() as $category)
 
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio2" autocomplete="off"
-                                   checked>
-                            <label class="btn text-white btn-outline-success" for="btnradio2" style="border: none">Bebidas</label>
+                            <a href="{{url('/makeOrder/' . $category->id)}}  " class="btn btn-outline-warning"
+                               aria-current="page" style="font-size: 18px; white-space: nowrap;">
+                                {{$category->name}}
+                            </a>
 
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio3" autocomplete="off"
-                                   checked>
-                            <label class="btn text-white btn-outline-success" for="btnradio3"
-                                   style="border: none">Cafés</label>
-
-                            <input type="radio" class="btn-check" name="btnradio" id="btnradio4" autocomplete="off"
-                                   checked>
-                            <label class="btn text-white btn-outline-success" for="btnradio4" style="border: none">Helados</label>
-
-                            <input type="radio" class="btn-check btn-outline-success" name="btnradio" id="btnradio5"
-                                   autocomplete="off" checked>
-                            <label class="btn text-white btn-outline-success" for="btnradio5" style="border: none">Bebidas
-                                Alcoholicas</label>
-                        @endfor
+                        @endforeach
 
                     </div>
 
@@ -213,25 +187,24 @@
 
                         <div class="carousel-inner custom-carousel-inner">
 
-                            @for($i=1; $i<11; $i++)
+                            @foreach($products as $product)
 
-                                <div class="carousel-item custom-carousel-item @if($i==1) active @endif">
+                                <div
+                                    class="carousel-item custom-carousel-item @if($product == $products[0]) active @endif">
 
                                     <div class="custom-carousel-item-content">
 
                                         <div class="card custom-card">
 
-                                            <img src="{{asset('images/prueba.png')}}"
+                                            <img src="{{asset('storage').'/'.$product->image}}"
                                                  class="card-img-top custom-levitation-effect"
                                                  alt="Product"
                                             >
 
                                             <div class="card-body custom-card-body">
-                                                <h5 class="card-title">Hamburguesa {{$i}}</h5>
-                                                <h6 class="card-title">$10.000</h6>
-                                                <a href="#"
-                                                   class="btn custom-product-selection-button"
-                                                   style="box-shadow: 0 0 2px 2px #E7EAE4">Seleccionar</a>
+                                                <h5 class="card-title">{{$product->name}}</h5>
+                                                <h6 class="card-title">{{$product->price}}</h6>
+                                                <a href="{{url('/category/' . $product->id)}}" class="btn custom-product-selection-button">Seleccionar</a>
                                             </div>
 
                                         </div>
@@ -240,20 +213,20 @@
 
                                 </div>
 
-                            @endfor
+                            @endforeach
 
                         </div>
 
-                        <button class="carousel-control-prev custom-carousel-control-prev round" type="button"
+                        <button class="carousel-control-prev custom-carousel-control-prev" type="button"
                                 data-bs-target="#carouselExampleControls"
-                                data-bs-slide="prev" style="background: transparent">
+                                data-bs-slide="prev">
                             <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Previous</span>
                         </button>
 
-                        <button class="carousel-control-next custom-carousel-control-next round" type="button"
+                        <button class="carousel-control-next custom-carousel-control-next" type="button"
                                 data-bs-target="#carouselExampleControls"
-                                data-bs-slide="nex" style="background: transparent">
+                                data-bs-slide="next">
                             <span class="carousel-control-next-icon" aria-hidden="true"></span>
                             <span class="visually-hidden">Next</span>
                         </button>
@@ -264,17 +237,16 @@
 
             </div>
 
-
             <!-- Panel de pedido -->
 
-            <div class="col-12 col-lg-5 ">
+            <div class="col-12 col-lg-5">
 
-                <div class="card custom-levitation-effect"
-                     style="background-color: rgba(255,255,255,0.5); box-shadow: 0 0 5px 5px #E7EAE4">
+                <div class="card" style="background-color: rgba(255,255,255,0.5)">
                     <div class="card-header d-flex justify-content-center">
                         <h2 style="color: white">Tu pedido</h2>
                     </div>
-                    <ul class="list-group list-group-flush " style="overflow-y: auto; height: 17rem;">
+
+                    <ul class="list-group list-group-flush" style="overflow-y: auto; height: 17rem;">
                         @for($i=0; $i<10; $i++)
                             <li class="list-group-item" style="background-color: rgba(0,0,0,0.75); margin-top: 1px">
 
@@ -323,9 +295,10 @@
     </div>
 @endsection
 
-@section('makeOrderScript')
 
+@section('makeOrderScript')
     <script>
+
         window.addEventListener("resize", function () {
             this.location.reload()
         })
@@ -373,5 +346,4 @@
         }
 
     </script>
-
 @endsection

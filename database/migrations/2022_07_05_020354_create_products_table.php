@@ -12,7 +12,7 @@ return new class extends Migration {
             $table->id();
             $table->string('name');
             $table->string('description');
-            $table->decimal('price', 15, 3);
+            $table->decimal('price', 15, 0);
             $table->integer('stockAmount');
             $table->integer('stockMin');
             $table->string('referenceNumber');

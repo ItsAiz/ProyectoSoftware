@@ -6,7 +6,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 
-class Client extends Model
+class Rol extends Model
 {
     use HasFactory;
 
@@ -15,11 +15,7 @@ class Client extends Model
     protected $guarded = ['id'];
 
     protected $fillable = [
-        'name',
-        'lastName',
-        'documentType',
-        'documentNumber',
-        'user_id'
+        'description'
     ];
 
     protected $hidden = [
@@ -28,7 +24,7 @@ class Client extends Model
 
     public function User(): BelongsTo
     {
-        return $this->belongsTo(Rol::class);
+        return $this->belongsTo(User::class);
     }
 
 }

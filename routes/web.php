@@ -12,7 +12,7 @@ use App\Http\Controllers\WebController\HomeController;
 /* Rutas de la vista welcome */
 Route::get('/', [welcomeController::class, 'getStart'])->name('start');
 Route::get('/menu', [welcomeController::class, 'getMenu'])->name('menu');
-Route::get('/makeOrder', [welcomeController::class, 'getMakeOrder'])->name('makeOrder');
+Route::get('/makeOrder/{id}', [welcomeController::class, 'getMakeOrder'])->name('makeOrder');
 
 /* Rutas de autorización, paquete basico de Laravel */
 Auth::routes();
@@ -38,3 +38,7 @@ Route::post('/employee/store', [EmployeeController::class, 'store']);
 Route::get('/employee/edit/{employee}', [EmployeeController::class, 'edit']);
 Route::patch('/employee/update/{employee}', [EmployeeController::class, 'update']);
 Route::delete('/employee/destroy/{employee}', [EmployeeController::class, 'destroy']);
+
+
+// Rutas de pruebas
+Route::get('/category/{id}', [\App\Http\Controllers\WebController\OrderController::class, 'index']);

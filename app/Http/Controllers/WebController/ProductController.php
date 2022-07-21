@@ -19,6 +19,7 @@ class ProductController extends Controller
     public function __construct()
     {
         $this->middleware('auth');
+        $this->middleware('isAdministrator');
     }
 
     public function index(): Factory|View|Application

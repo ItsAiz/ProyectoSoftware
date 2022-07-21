@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WebController;
 
 use App\Http\Controllers\Controller;
+use App\Models\Category;
 use Illuminate\Contracts\View\View;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Foundation\Application;
@@ -20,9 +21,11 @@ class WelcomeController extends Controller
         return "Falta implentar el menú";
     }
 
-    public function getMakeOrder(): Factory|View|Application
+    public function getMakeOrder($id): Factory|View|Application
     {
-        return view("components.makeOrder");
+        $category = Category::all()->find($id);
+        $data['products'] = $category->product;
+        return view("components.makeOrder", $data);
     }
 
 }

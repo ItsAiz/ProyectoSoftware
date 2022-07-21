@@ -52,7 +52,7 @@
                         <td>{{$product->iva}}</td>
 
                         <td>
-                            <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$product->image }}"
+                            <img class="img-thumbnail img-fluid" src="{{asset('storage').'/'.$product->image}}"
                                  width="100" alt="image_product">
                         </td>
 

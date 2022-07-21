@@ -2,11 +2,12 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
-use Illuminate\Notifications\Notifiable;
 use Laravel\Sanctum\HasApiTokens;
+use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Notifications\Notifiable;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class User extends Authenticatable
 {
@@ -17,6 +18,7 @@ class User extends Authenticatable
     protected $fillable = [
         'email',
         'password',
+        'rol_id'
     ];
 
     protected $hidden = [
@@ -27,7 +29,23 @@ class User extends Authenticatable
     protected $casts = [
         'email_verified_at' => 'datetime',
     ];
-    public function employees(){
+
+    public function rol(): BelongsTo
+    {
+        return $this->belongsTo(Rol::class);
+    }
+
+    public function client(): HasOne
+    {
+        return $this->hasOne(Client::class);
+    }
+
+
+
+    // Pendiente
+    public function employees()
+    {
         return $this->belongsTo(Employee::class);
     }
+
 }

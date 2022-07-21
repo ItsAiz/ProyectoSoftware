@@ -12,7 +12,7 @@
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
     <!-- favicon -->
-    <link rel="shortcut icon" href="favicon.png">
+    <link rel="shortcut icon" href="{{ asset('favicon.png') }}">
 
     <!-- Title -->
     <title>11&6 GASTRO PUB</title>
@@ -26,7 +26,7 @@
 
 </head>
 
-<body id="body">
+<body id="body" class="body_move">
 
 <div id="app">
 
@@ -44,7 +44,15 @@
 
                     <a id="navbarDropdown" class="nav-link dropdown-toggle text-black" href="#" role="button"
                        data-bs-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
-                        {{ Auth::user()->email }}
+
+                        @if(Auth::user()->rol->description == 'administrator')
+                            Administrador
+                        @elseif(Auth::user()->rol->description == 'employee')
+                            <span>Empleado</span>
+                        @else
+                            {{ Auth::user()->client->name }}
+                        @endif
+
                     </a>
 
                     <div class="dropdown-menu dropdown-menu-end" aria-labelledby="navbarDropdown">
@@ -72,7 +80,7 @@
 
     </header>
 
-    <div class="menu__side" id="menu_side">
+    <div class="menu__side menu__side_move" id="menu_side">
 
         <div class="name__page">
             <i class="fa-solid fa-star"></i>
@@ -88,11 +96,19 @@
             <a href="{{ route('home') }}" class="{{request()->routeIs('home') ? 'selected' : ''}}">
                 <div class="option">
                     <i class="fas fa-home"></i>
-                    <span>Inicio</span>
+                    @if(Auth::user()->rol->description == 'administrator')
+                        <span>Administrador</span>
+                    @elseif(Auth::user()->rol->description == 'employee')
+                        <span>Empleado</span>
+                    @else
+                        <span>Cliente</span>
+                    @endif
                 </div>
             </a>
 
             <!-- Admin -->
+
+            @if(Auth::user()->rol->description == 'administrator')
 
                 <a href="{{ route('product/management') }}"
                    class="{{request()->routeIs('product/management') ? 'selected' : ''}}">
@@ -103,7 +119,7 @@
                 </a>
 
                 <a href="{{ route('employee/management') }}"
-                    class="{{request()->routeIs('employee/management') ? 'selected' : ''}}">
+                   class="{{request()->routeIs('employee/management') ? 'selected' : ''}}">
                     <div class="option">
                         <i class="fa-solid fa-user-tie"></i>
                         <span>Gestión&nbsp;empleados</span>
@@ -113,25 +129,27 @@
                 <a href="#">
                     <div class="option">
                         <i class="fa-solid fa-users"></i>
-                        <span>Registro&nbsp;clientes</span>
+                        <span>Gestión&nbsp;clientes</span>
                     </div>
                 </a>
 
                 <a href="#">
                     <div class="option">
                         <i class="fa-solid fa-book"></i>
-                        <span>Registro&nbsp;reservas</span>
+                        <span>Gestión&nbsp;reservas</span>
                     </div>
                 </a>
 
                 <a href="#">
                     <div class="option">
                         <i class="fa-solid fa-bag-shopping"></i>
-                        <span>Registro&nbsp;domicilios</span>
+                        <span>Gestión&nbsp;domicilios</span>
                     </div>
                 </a>
 
-        <!-- Empleado -->
+            @endif
+
+            @if(Auth::user()->rol->description == 'employee')
 
                 <a href="#">
                     <div class="option">
@@ -154,7 +172,23 @@
                     </div>
                 </a>
 
-            <!-- Cliente -->
+            @endif
+
+            @if(Auth::user()->rol->description == 'client')
+
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Solicitar&nbsp;domicilio</span>
+                    </div>
+                </a>
+
+                <a href="#">
+                    <div class="option">
+                        <i class="fa-solid fa-bell-concierge"></i>
+                        <span>Solicitar&nbsp;reservas</span>
+                    </div>
+                </a>
 
                 <a href="#">
                     <div class="option">
@@ -163,19 +197,7 @@
                     </div>
                 </a>
 
-                <a href="#">
-                    <div class="option">
-                        <i class="fa-solid fa-bell-concierge"></i>
-                        <span>Solicitar&nbsp;reserva</span>
-                    </div>
-                </a>
-
-                <a href="#">
-                    <div class="option">
-                        <i class="fa-solid fa-bag-shopping"></i>
-                        <span>Solicitar&nbsp;domicilio</span>
-                    </div>
-                </a>
+            @endif
 
         </div>
 
