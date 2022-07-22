@@ -29,6 +29,15 @@
         }
 
         .custom-product-selection-button:focus {
+            width: 80%;
+            color: #ffffff;
+            font-size: 15px;
+            border-color: #ffffff80;
+            background-color: #ffffff00;
+            box-shadow: none;
+        }
+
+        .custom-product-selection-button:focus:hover {
             color: #000000;
             font-weight: 600;
             border-color: #ffc107;
@@ -39,7 +48,7 @@
         @media (min-width: 768px) {
             .custom-menu-section {
                 margin-top: 11rem;
-                margin-bottom: 6rem;
+                margin-bottom: 8rem;
             }
         }
 
@@ -80,32 +89,8 @@
             color: #FFFFFFBF;
         }
 
-        .custom-product-selection-button {
-            width: 80%;
-            color: #ffffff;
-            font-size: 15px;
-            border-color: #ffffff80;
-            background-color: #ffffff00;
-        }
-
-        .custom-product-selection-button:hover {
-            color: #000000;
-            font-weight: 600;
-            border-color: #ffc107;
-            background-color: #ffc107;
-        }
-
-        .custom-product-selection-button:focus {
-            color: #000000;
-            font-weight: 600;
-            border-color: #ffc107;
-            background-color: #ffc107;
-            box-shadow: 0 0 15px #ffffff80;
-        }
-
         .custom-products-section {
             position: relative;
-
         }
 
         .custom-carousel-inner {
@@ -168,7 +153,8 @@
 
                         @foreach(\App\Models\Category::all() as $category)
 
-                            <a href="{{url('/makeOrder/' . $category->id)}}  " class="btn btn-outline-warning"
+                            <a href="{{url('/makeOrder/' . $category->id)}}" class="btn btn-outline-warning
+                              {{ request()->path() == 'makeOrder/' . $category->id ? 'active' : '' }}"
                                aria-current="page" style="font-size: 18px; white-space: nowrap;">
                                 {{$category->name}}
                             </a>
@@ -197,20 +183,73 @@
                                         <div class="card custom-card">
 
                                             <img src="{{asset('storage').'/'.$product->image}}"
-                                                 class="card-img-top custom-levitation-effect"
-                                                 alt="Product"
-                                            >
+                                                 class="card-img-top custom-levitation-effect" alt="Product">
 
                                             <div class="card-body custom-card-body">
+
                                                 <h5 class="card-title">{{$product->name}}</h5>
-                                                <h6 class="card-title">{{$product->price}}</h6>
-                                                <a href="{{url('/category/' . $product->id)}}" class="btn custom-product-selection-button">Seleccionar</a>
+                                                <h6 class="card-title">
+                                                    $ {{number_format($product->price, 0, ',', '.')}}</h6>
+
+                                                <!-- Button modal -->
+                                                <button type="button" class="btn custom-product-selection-button"
+                                                        data-bs-toggle="modal"
+                                                        data-bs-target="#productModal{{$product->id}}">
+                                                    Seleccionar
+                                                </button>
+
                                             </div>
 
                                         </div>
 
                                     </div>
 
+                                </div>
+
+                                <!-- Product Modal -->
+
+                                <div class="portfolio-modal modal fade mt-5" id="productModal{{$product->id}}"
+                                     tabindex="-1"
+                                     aria-labelledby="portfolioModal1"
+                                     aria-hidden="true">
+
+                                    <div class="modal-dialog modal-lg">
+
+                                        <div class="modal-content" style="background: rgba(255,255,255,0.9)">
+
+                                            <div class="modal-body">
+
+                                                <div class="container">
+
+                                                    <div class="row">
+
+                                                        <div class="col-12 col-md-6 mt-3 mb-3 rounded-3"
+                                                             style="background: rgba(255,193,7,0.7);">
+                                                            <img class="img-fluid mt-5 mb-5"
+                                                                 src="{{asset('storage').'/'.$product->image}}"
+                                                                 alt="product"/>
+                                                        </div>
+
+                                                        <div class="col-12 col-md-6">
+                                                            <h1 class="text-center fw-bolder align-middle mt-3">{{$product->name}}</h1>
+                                                            <h5 class="fw-bolder mt-4">Descripción:</h5>
+                                                            <p>{{$product->description}}</p>
+                                                            <h5 class="mt-4">Precio
+                                                                unitario:&nbsp;<strong>$&nbsp;{{number_format($product->price, 0, ',', '.')}}</strong>
+                                                            </h5>
+                                                        </div>
+
+                                                    </div>
+
+                                                    <div class="row d-flex justify-content-center mt-3 mt-md-0">
+                                                        <a href="{{url('/addProduct/' . $product->id)}}"
+                                                           class="btn btn-warning w-50">Agregar</a>
+                                                    </div>
+
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
                                 </div>
 
                             @endforeach
@@ -239,54 +278,108 @@
 
             <!-- Panel de pedido -->
 
-            <div class="col-12 col-lg-5">
+            <div class="col-12 col-lg-5 text-center">
 
-                <div class="card" style="background-color: rgba(255,255,255,0.5)">
-                    <div class="card-header d-flex justify-content-center">
-                        <h2 style="color: white">Tu pedido</h2>
+                @if(session('errorMessage'))
+                    <div class="alert alert-warning alert-dismissible fade show">
+                        {{session('errorMessage')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
                     </div>
+                @endif
 
-                    <ul class="list-group list-group-flush" style="overflow-y: auto; height: 17rem;">
-                        @for($i=0; $i<10; $i++)
-                            <li class="list-group-item" style="background-color: rgba(0,0,0,0.75); margin-top: 1px">
+                @if(session('listOfProducts') == null || sizeof(session('listOfProducts')) == 0)
+
+                    <img class="img-fluid" src="{{asset('images/wallpapers/bannerOrder.png')}}" width="300"
+                         alt="banner"/>
+
+                @else
+
+                    <div class="card" style="background-color: rgba(255,255,255,0.5)">
+
+                        <div class="card-header d-flex align-items-center justify-content-center">
+                            <span class="text-white fw-bolder " style="font-size: 25px;">Tu pedido</span>
+                        </div>
+
+                        <ul class="list-group list-group-flush" style="overflow-y: auto; max-height: 13rem;">
+
+                            <li class="list-group-item" style="background-color: #ffc107; margin-top: 1px">
 
                                 <div class="row">
 
-                                    <div class="col-3 col-xl-2">
-
-                                        <select class="form-select" aria-label="Default select example">
-                                            @for($j=1; $j<6; $j++)
-                                                <option value="1">{{$j}}</option>
-                                            @endfor
-                                        </select>
-
+                                    <div class="col-2 d-flex justify-content-center align-items-center">
+                                                <span
+                                                    class="text-center text-white fs-6">Cantidad</span>
                                     </div>
 
-                                    <div class="col-3 col-sm-4" style="text-align: center">
-                                        <h6 style="color: white">Hamburguesa triple especial</h6>
+                                    <div class="col-5 d-flex justify-content-center align-items-center">
+                                                <span
+                                                    class="text-center text-white fs-6">Producto</span>
                                     </div>
 
-                                    <div class="col-4 col-sm-3" style="text-align: center">
-                                        <h6 style="color: white">$15.0000</h6>
+                                    <div class="col-3 d-flex justify-content-center align-items-center">
+                                            <span
+                                                class="text-center text-white fs-6">Precio</span>
                                     </div>
 
-                                    <div class="col-2 col-sm-2" style="text-align: center">
-                                        <a class="btn btn-danger" href="#"
-                                           style="background-color: rgba(255,0,0,0.5); color: white">
-                                            <i class="fa-solid fa-trash"> </i>
-                                        </a>
+                                    <div class="col-2 d-flex justify-content-center align-items-center">
+                                            <span
+                                                class="text-center text-white fs-6">Acción</span>
                                     </div>
 
                                 </div>
 
                             </li>
-                        @endfor
-                    </ul>
 
-                    <div class="card-footer text-muted text-center">
-                        <a href="#" class="btn btn-warning" style="width: 8rem">Continuar</a>
+                            <li class="list-group-item" style="background-color: rgba(0,0,0,0.75); margin-top: 1px">
+
+                                @foreach(session('listOfProducts') as $selectedProduct)
+
+                                    <div class="row mb-2">
+
+                                        <div class="col-2 d-flex justify-content-center align-items-center">
+                                                <span
+                                                    class="text-center text-white fs-6">{{$selectedProduct->stockAmount}}</span>
+                                        </div>
+
+                                        <div class="col-5 d-flex justify-content-center align-items-center">
+                                                <span
+                                                    class="text-center text-white fs-6">{{$selectedProduct->name}}</span>
+                                        </div>
+
+                                        <div class="col-3 d-flex justify-content-center align-items-center">
+                                            <span
+                                                class="text-center text-white fs-6">$&nbsp;{{number_format(($selectedProduct->stockAmount * $selectedProduct->price), 0, ',', '.')}}</span>
+                                        </div>
+
+                                        <div class="col-2 d-flex justify-content-center align-items-center">
+                                            <form action="{{url('/removeProduct')}}" method="post">
+                                                @method("delete")
+                                                @csrf
+                                                <input type="hidden" name="indice" value="{{$loop->index}}">
+                                                <button type="submit" class="btn btn-danger"
+                                                        style="background-color: rgba(255,0,0,0.5); color: white">
+                                                    <i class="fa-solid fa-trash"> </i>
+                                                </button>
+                                            </form>
+                                        </div>
+
+                                    </div>
+
+                                @endforeach
+
+                            </li>
+
+                        </ul>
+
+                        <div class="card-footer d-flex">
+                            <span class="text-black fs-4 fw-bolder">
+                                Total:&nbsp;${{number_format( $total, 0, ',', '.')}}
+                            </span>
+                        </div>
+
                     </div>
-                </div>
+
+                @endif
 
             </div>
 
@@ -295,13 +388,8 @@
     </div>
 @endsection
 
-
 @section('makeOrderScript')
     <script>
-
-        window.addEventListener("resize", function () {
-            this.location.reload()
-        })
 
         let multipleCardCarousel = document.querySelector("#carouselExampleControls");
 
@@ -346,4 +434,5 @@
         }
 
     </script>
+
 @endsection

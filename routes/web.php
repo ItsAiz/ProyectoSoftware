@@ -1,18 +1,17 @@
 <?php
 
-use App\Http\Controllers\WebController\ClientController;
-use App\Http\Controllers\WebController\EmployeeController;
-use App\Http\Controllers\WebController\ProductController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController\WelcomeController;
 use Illuminate\Support\Facades\Auth;
+use App\Http\Controllers\WebController\ClientController;
 use App\Http\Controllers\WebController\HomeController;
-
+use App\Http\Controllers\WebController\ProductController;
+use App\Http\Controllers\WebController\EmployeeController;
+use App\Http\Controllers\WebController\OrderController;
 
 /* Rutas de la vista welcome */
 Route::get('/', [welcomeController::class, 'getStart'])->name('start');
 Route::get('/menu', [welcomeController::class, 'getMenu'])->name('menu');
-Route::get('/makeOrder/{id}', [welcomeController::class, 'getMakeOrder'])->name('makeOrder');
 
 /* Rutas de autorización, paquete basico de Laravel */
 Auth::routes();
@@ -32,13 +31,15 @@ Route::patch('/product/update/{product}', [ProductController::class, 'update']);
 Route::delete('/product/destroy/{product}', [ProductController::class, 'destroy']);
 
 /* Rutas gestión empleados*/
-Route::get('/employee/management', [EmployeeController::class,'index'])->name('employee/management');
+Route::get('/employee/management', [EmployeeController::class, 'index'])->name('employee/management');
 Route::get('/employee/create', [EmployeeController::class, 'create']);
 Route::post('/employee/store', [EmployeeController::class, 'store']);
 Route::get('/employee/edit/{employee}', [EmployeeController::class, 'edit']);
 Route::patch('/employee/update/{employee}', [EmployeeController::class, 'update']);
 Route::delete('/employee/destroy/{employee}', [EmployeeController::class, 'destroy']);
 
-
-// Rutas de pruebas
-Route::get('/category/{id}', [\App\Http\Controllers\WebController\OrderController::class, 'index']);
+// Rutas de solicitud de domicilios
+Route::get('/makeOrder/{category}', [OrderController::class, 'getMakeOrder'])->name('makeOrder');
+Route::get('/addProduct/{product}', [OrderController::class, 'addProduct']);
+Route::delete('/removeProduct', [OrderController::class, 'removeProduct']);
+Route::post('/finalizeOrder', [OrderController::class, 'finalizeOrder']);
