@@ -126,21 +126,24 @@
                     </div>
                 </a>
 
-                <a href="#">
+                <a href="{{ route('client/management') }}"
+                   class="{{request()->routeIs('client/management') ? 'selected' : ''}}">
                     <div class="option">
                         <i class="fa-solid fa-users"></i>
                         <span>Gestión&nbsp;clientes</span>
                     </div>
                 </a>
 
-                <a href="#">
+                <a href="{{ route('bookings/management') }}"
+                   class="{{request()->routeIs('bookings/management') ? 'selected' : ''}}">
                     <div class="option">
                         <i class="fa-solid fa-book"></i>
                         <span>Gestión&nbsp;reservas</span>
                     </div>
                 </a>
 
-                <a href="#">
+                <a href="{{ route('domiciles/management') }}"
+                   class="{{request()->routeIs('domiciles/management') ? 'selected' : ''}}">
                     <div class="option">
                         <i class="fa-solid fa-bag-shopping"></i>
                         <span>Gestión&nbsp;domicilios</span>

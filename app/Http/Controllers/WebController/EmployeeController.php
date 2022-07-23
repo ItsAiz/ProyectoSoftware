@@ -30,7 +30,8 @@ class EmployeeController extends Controller
     public function store(Request $request): Redirector|Application|RedirectResponse{
         $user = new User([
             'email' => $request->get('email'),
-            'password' => Hash::make($request->get('password'))
+            'password' => Hash::make($request->get('password')),
+            'rol_id' => 2
         ]);
         $user->save();
         $employee = new Employee([

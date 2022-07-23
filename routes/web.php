@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\WebController\BookingManagmentController;
+use App\Http\Controllers\WebController\ClientManagmentController;
+use App\Http\Controllers\WebController\DomicileManagmentController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\WebController\WelcomeController;
 use Illuminate\Support\Facades\Auth;
@@ -37,6 +40,17 @@ Route::post('/employee/store', [EmployeeController::class, 'store']);
 Route::get('/employee/edit/{employee}', [EmployeeController::class, 'edit']);
 Route::patch('/employee/update/{employee}', [EmployeeController::class, 'update']);
 Route::delete('/employee/destroy/{employee}', [EmployeeController::class, 'destroy']);
+
+/* Rutas gestión clientes*/
+Route::get('/client/management', [ClientManagmentController::class,'index'])->name('client/management');
+Route::get('/client/domicile/{client}', [ClientManagmentController::class,'domiciles']);
+Route::get('/client/bookings/{client}', [ClientManagmentController::class,'bookings']);
+
+/* Rutas gestión domicilios*/
+Route::get('/domiciles/management', [DomicileManagmentController::class,'index'])->name('domiciles/management');
+
+/* Rutas gestión reservas*/
+Route::get('/bookings/management', [BookingManagmentController::class,'index'])->name('bookings/management');
 
 // Rutas de solicitud de domicilios
 Route::get('/makeOrder/{category}', [OrderController::class, 'getMakeOrder'])->name('makeOrder');
