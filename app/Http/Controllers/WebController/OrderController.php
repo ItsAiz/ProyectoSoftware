@@ -104,11 +104,11 @@ class OrderController extends Controller
         return redirect()->route('makeOrder', 1);
     }
 
-    /*
+
     public function finalizeOrder(Request $request)
     {
-        return session('listOfProducts');
+        $products = session('listOfProducts');
+        return $products;
     }
-    */
 
 }
