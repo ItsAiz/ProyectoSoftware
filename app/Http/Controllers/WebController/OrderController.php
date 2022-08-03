@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\WebController;
 
 use App\Http\Controllers\Controller;
+use App\Http\Requests\Delivery\DeliveryRequest;
 use App\Models\Category;
 use App\Models\Product;
 use Illuminate\Contracts\Foundation\Application;
@@ -105,10 +106,13 @@ class OrderController extends Controller
     }
 
 
-    public function finalizeOrder(Request $request)
+    public function finalizeOrder(DeliveryRequest $request)
     {
-        $products = session('listOfProducts');
-        return $products;
+
+
+
+
+        return $request;
     }
 
 }
