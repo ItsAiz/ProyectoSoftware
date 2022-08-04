@@ -280,6 +280,13 @@
 
             <div class="col-12 col-lg-5 text-center">
 
+                @if(session('message'))
+                    <div class="alert alert-warning alert-dismissible fade show">
+                        {{session('message')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                @endif
+
                 @if(session('errorMessage'))
                     <div class="alert alert-warning alert-dismissible fade show">
                         {{session('errorMessage')}}
@@ -287,11 +294,8 @@
                     </div>
                 @endif
 
-                @if(session('listOfProducts') == null || sizeof(session('listOfProducts')) == 0)
-
-                    <img class="img-fluid" src="{{asset('images/wallpapers/bannerOrder.png')}}" width="300"
-                         alt="banner"/>
-
+                @if(session('listOfProducts') == null)
+                    <img class="img-fluid" src="{{asset('images/wallpapers/bannerOrder.png')}}" width="300" alt="..."/>
                 @else
 
                     <div class="card" style="background-color: rgba(255,255,255,0.5)">
@@ -385,7 +389,7 @@
 
         </div>
 
-        @if(session('listOfProducts') != null || sizeof(session('listOfProducts')) != 0)
+        @if(session('listOfProducts') != null)
 
             <div class="container-fluid mt-5">
 
@@ -413,21 +417,26 @@
 
                             <div class="form-group">
                                 <label class="text-white" for="name">Nombre</label>
-                                <input type="text" class="form-control" name="name">
+                                <input type="text" class="form-control" name="name"
+                                       value="{{isset($name)?$name:old('name')}}">
                             </div>
 
                             <div class="form-group mt-2">
                                 <label class="text-white" for="address">Dirección</label>
-                                <input type="text" class="form-control" name="address">
+                                <input type="text" class="form-control" name="address"
+                                       value="{{isset($address)?$address:old('address')}}">
                             </div>
 
                             <div class="form-group mt-2">
                                 <label class="text-white" for="phoneNumber">Número de celular</label>
-                                <input type="text" class="form-control" name="phoneNumber">
+                                <input type="text" class="form-control" name="phoneNumber"
+                                       value="{{isset($phoneNumber)?$phoneNumber:old('phoneNumber')}}">
                             </div>
 
                             <div class="mt-3 mb-3 d-flex align-items-end justify-content-center">
-                                <input type="submit" class="btn btn-warning" value="Confirmar pedido">
+                                <input type="submit" class="btn btn-warning"
+                                       onclick="return confirm('¿Desea finalizar el producto?')"
+                                       value="Confirmar pedido">
                             </div>
 
                         </form>

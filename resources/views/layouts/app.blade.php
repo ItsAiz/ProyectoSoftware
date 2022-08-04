@@ -179,14 +179,14 @@
 
             @if(Auth::user()->rol->description == 'client')
 
-                <a href="#">
+                <a href="{{ url('makeOrder/' . 1) }}">
                     <div class="option">
                         <i class="fa-solid fa-bag-shopping"></i>
                         <span>Solicitar&nbsp;domicilio</span>
                     </div>
                 </a>
 
-                <a href="#">
+                <a href="{{ url('reservation')  }}">
                     <div class="option">
                         <i class="fa-solid fa-bell-concierge"></i>
                         <span>Solicitar&nbsp;reservas</span>

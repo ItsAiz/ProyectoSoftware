@@ -27,7 +27,6 @@
                     <th>Descripción</th>
                     <th>Precio</th>
                     <th>Stock</th>
-                    <th>Stock&nbsp;mínimo</th>
                     <th>Referencia</th>
                     <th>Iva</th>
                     <th>Imagen</th>
@@ -47,7 +46,6 @@
                         <td>{{$product->description}}</td>
                         <td>{{$product->price}}</td>
                         <td>{{$product->stockAmount}}</td>
-                        <td>{{$product->stockMin}}</td>
                         <td>{{$product->referenceNumber}}</td>
                         <td>{{$product->iva}}</td>
 

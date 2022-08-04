@@ -5,12 +5,18 @@ namespace App\Http\Controllers\WebController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Delivery\DeliveryRequest;
 use App\Models\Category;
+use App\Models\Client;
+use App\Models\DomicileSale;
+use App\Models\OrderDetail;
 use App\Models\Product;
+use App\Models\User;
+use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
 {
@@ -33,7 +39,7 @@ class OrderController extends Controller
         return $this->addToTheList($product);
     }
 
-    public function getTotal()
+    private function getTotal()
     {
         $total = 0;
 
@@ -105,14 +111,46 @@ class OrderController extends Controller
         return redirect()->route('makeOrder', 1);
     }
 
-
-    public function finalizeOrder(DeliveryRequest $request)
+    public function finalizeOrder(DeliveryRequest $request): RedirectResponse
     {
+        $user = User::all()->find(Auth::id());
+        $client = ($user && $user->client) ? Client::all()->find($user->client->id) : null;
 
+        $sale = new DomicileSale();
+        $sale->setAttribute('saleDate', Carbon::now());
+        $sale->setAttribute('totalCost', $this->getTotal());
+        $sale->setAttribute('name', $request->get('name'));
+        $sale->setAttribute('address', $request->get('address'));
+        $sale->setAttribute('phoneNumber', $request->get('phoneNumber'));
+        $sale->setAttribute('client_id', ($client) ? $client->getAttribute('id') : null);
+        $sale->save();
 
+        $idSale = $sale->getAttribute('id');
 
+        $products = $this->getListProducts();
 
-        return $request;
+        foreach ($products as $product) {
+
+            $productSold = new OrderDetail([
+                'domicile_sale_id' => $idSale,
+                'name' => $product->getAttribute('name'),
+                'price' => $product->getAttribute('price'),
+                'amount' => $product->getAttribute('stockAmount')
+            ]);
+            $productSold->save();
+
+            $updatedProduct = Product::all()->find($product->getAttribute('id'));
+            $updatedProduct->stockAmount = ($updatedProduct->stockAmount - $productSold->getAttribute('amount'));
+            $updatedProduct->save();
+        }
+
+        $this->emptyProductList();
+        return redirect()->route('makeOrder', 1)->with('message', 'Solicitud de domicilio realizada correctamente');
+    }
+
+    private function emptyProductList()
+    {
+        $this->saveProducts(null);
     }
 
 }

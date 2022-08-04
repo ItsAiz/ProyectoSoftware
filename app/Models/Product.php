@@ -22,7 +22,6 @@ class Product extends Model
         'description',
         'price',
         'stockAmount',
-        'stockMin',
         'referenceNumber',
         'iva',
         'image',
