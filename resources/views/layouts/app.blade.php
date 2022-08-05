@@ -23,6 +23,7 @@
     <!-- Styles -->
     <link href="{{ asset('css/app.css') }}" rel="stylesheet">
     <link href="{{ asset('css/dashboardStyles.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/clockpicker.css') }}" rel="stylesheet">
 
 </head>
 
@@ -179,14 +180,14 @@
 
             @if(Auth::user()->rol->description == 'client')
 
-                <a href="#">
+                <a href="{{ url('makeOrder/' . 1) }}">
                     <div class="option">
                         <i class="fa-solid fa-bag-shopping"></i>
                         <span>Solicitar&nbsp;domicilio</span>
                     </div>
                 </a>
 
-                <a href="#">
+                <a href="{{ url('/booking') }}">
                     <div class="option">
                         <i class="fa-solid fa-bell-concierge"></i>
                         <span>Solicitar&nbsp;reservas</span>
@@ -215,6 +216,10 @@
 <!-- Scripts -->
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/dashboardScript.js')}}"></script>
+<script src="{{asset('js/clockpicker.js')}}"></script>
+
+<!-- Script sections -->
+@yield('bookingScript')
 
 </body>
 </html>

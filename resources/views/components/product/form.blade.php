@@ -39,12 +39,6 @@
 </div>
 
 <div class="form-group mt-3">
-    <label for="stockMin">Stock mínimo</label>
-    <input type="number" class="form-control" name="stockMin"
-           value="{{isset($product->stockMin)?$product->stockMin:old('stockMin')}}">
-</div>
-
-<div class="form-group mt-3">
     <label for="referenceNumber">Referencia</label>
     <input type="text" class="form-control" name="referenceNumber"
            value="{{isset($product->referenceNumber)?$product->referenceNumber:old('referenceNumber')}}">

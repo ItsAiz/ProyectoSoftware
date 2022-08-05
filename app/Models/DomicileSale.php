@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class Client extends Model
+class DomicileSale extends Model
 {
     use HasFactory;
 
@@ -16,26 +16,22 @@ class Client extends Model
     protected $guarded = ['id'];
 
     protected $fillable = [
+        'saleDate',
+        'totalCost',
         'name',
-        'lastName',
-        'documentType',
-        'documentNumber',
-        'user_id'
+        'address',
+        'phoneNumber',
+        'client_id'
     ];
 
-    public function user(): BelongsTo
+    public function orderDetail(): HasMany
     {
-        return $this->belongsTo(User::class);
+        return $this->hasMany(OrderDetail::class);
     }
 
-    public function domicileSale(): HasMany
+    public function client(): BelongsTo
     {
-        return $this->hasMany(DomicileSale::class);
-    }
-
-    public function booking(): HasMany
-    {
-        return $this->hasMany(Booking::class);
+        return $this->belongsTo(Client::class);
     }
 
 }

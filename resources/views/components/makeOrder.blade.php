@@ -48,7 +48,7 @@
         @media (min-width: 768px) {
             .custom-menu-section {
                 margin-top: 11rem;
-                margin-bottom: 8rem;
+                margin-bottom: 5.5rem;
             }
         }
 
@@ -280,6 +280,13 @@
 
             <div class="col-12 col-lg-5 text-center">
 
+                @if(session('message'))
+                    <div class="alert alert-warning alert-dismissible fade show">
+                        {{session('message')}}
+                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                    </div>
+                @endif
+
                 @if(session('errorMessage'))
                     <div class="alert alert-warning alert-dismissible fade show">
                         {{session('errorMessage')}}
@@ -287,11 +294,8 @@
                     </div>
                 @endif
 
-                @if(session('listOfProducts') == null || sizeof(session('listOfProducts')) == 0)
-
-                    <img class="img-fluid" src="{{asset('images/wallpapers/bannerOrder.png')}}" width="300"
-                         alt="banner"/>
-
+                @if(session('listOfProducts') == null)
+                    <img class="img-fluid" src="{{asset('images/wallpapers/bannerOrder.png')}}" width="300" alt="..."/>
                 @else
 
                     <div class="card" style="background-color: rgba(255,255,255,0.5)">
@@ -300,7 +304,7 @@
                             <span class="text-white fw-bolder " style="font-size: 25px;">Tu pedido</span>
                         </div>
 
-                        <ul class="list-group list-group-flush" style="overflow-y: auto; max-height: 13rem;">
+                        <ul class="list-group list-group-flush" style="overflow-y: auto; height: 13rem;">
 
                             <li class="list-group-item" style="background-color: #ffc107; margin-top: 1px">
 
@@ -384,6 +388,66 @@
             </div>
 
         </div>
+
+        @if(session('listOfProducts') != null)
+
+            <div class="container-fluid mt-5">
+
+                <div class="col-5 mx-auto" style="border-style: solid; border-width: 2px; border-color: rgba(255,255,255,0);
+            background: rgba(0,0,0,0.80)">
+
+                    <div class="col-12 mx-auto">
+                        <h3 class="text-center mt-4 titles-section-start text-white">Información de domicilio</h3>
+                    </div>
+
+                    <div class="col-9 mt-2 mx-auto">
+
+                        <form action="{{url('/finalizeOrder')}}" method="post" enctype="multipart/form-data">
+                            @csrf
+
+                            @if(count($errors)>0)
+                                <div class="alert alert-danger" role="alert">
+                                    <ul>
+                                        @foreach($errors->all() as $error)
+                                            <li>{{$error}}</li>
+                                        @endforeach
+                                    </ul>
+                                </div>
+                            @endif
+
+                            <div class="form-group">
+                                <label class="text-white" for="name">Nombre</label>
+                                <input type="text" class="form-control" name="name"
+                                       value="{{isset($name)?$name:old('name')}}">
+                            </div>
+
+                            <div class="form-group mt-2">
+                                <label class="text-white" for="address">Dirección</label>
+                                <input type="text" class="form-control" name="address"
+                                       value="{{isset($address)?$address:old('address')}}">
+                            </div>
+
+                            <div class="form-group mt-2">
+                                <label class="text-white" for="phoneNumber">Número de celular</label>
+                                <input type="text" class="form-control" name="phoneNumber"
+                                       value="{{isset($phoneNumber)?$phoneNumber:old('phoneNumber')}}">
+                            </div>
+
+                            <div class="mt-3 mb-3 d-flex align-items-end justify-content-center">
+                                <input type="submit" class="btn btn-warning"
+                                       onclick="return confirm('¿Desea finalizar el producto?')"
+                                       value="Confirmar pedido">
+                            </div>
+
+                        </form>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+        @endif
 
     </div>
 @endsection
