@@ -18,8 +18,8 @@ class ClientManagmentController extends Controller
         return view('components.client.index', $data);
     }
     public function domiciles(Client $client): Factory|View|Application{
-        $data['domiciles'] = DomicileSale::all()->where('client_id', '=', $client->getAttribute('id'));
-        return view('components.client.domiciles',$data);
+        $domiciles = DomicileSale::all()->where('client_id', '=', $client->getAttribute('id'));
+        return view('components.client.domiciles')->with(['domiciles'=>$domiciles,'client'=>$client]);
     }
 
     public function details(DomicileSale $domicile): Factory|View|Application{
@@ -27,8 +27,8 @@ class ClientManagmentController extends Controller
         return view('components.client.details',$data);
     }
 
-    public function bookings(Client $client): Factory|View|Application{
-        $data['bookings'] = Booking::all()->where('client_id', '=', $client->getAttribute('id'));
-        return view('components.client.booking',$data);
+    public function bookings(Client $client){
+        $bookings = Booking::all()->where('client_id', '=', $client->getAttribute('id'));
+        return view('components.client.booking')->with(['bookings'=>$bookings,'client'=>$client]);
     }
 }

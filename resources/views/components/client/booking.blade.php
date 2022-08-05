@@ -1,7 +1,7 @@
 @extends('layouts.app')
 <div class="container">
     <!--onclick="window.location.reload();"-->
-    <a href="{{url('client/domicile/'.request()->{'client'})}}" class="btn btn-primary" style="float: left;">Domicilios</a>
+    <a href="{{url('client/domicile/'.$client->id)}}" class="btn btn-primary" style="float: left;">Domicilios</a>
     <a href="{{ app('request')->input('a') }}" class="btn btn-primary" style="float: right;">Reservas</a>
     <h1 class="text-center mb-4" style="font-family: 'Arial Rounded MT Bold', sans-serif">Reservas</h1>
 

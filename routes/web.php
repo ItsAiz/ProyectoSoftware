@@ -47,6 +47,7 @@ Route::get('/client/management', [ClientManagmentController::class, 'index'])->n
 Route::get('/client/domicile/{client}', [ClientManagmentController::class, 'domiciles']);
 Route::get('/client/domicile/details/{domicile}', [ClientManagmentController::class, 'details']);
 Route::get('/client/bookings/{client}', [ClientManagmentController::class, 'bookings']);
+
 /* Rutas gestión domicilios */
 Route::get('/domiciles/management', [DomicileManagmentController::class, 'index'])->name('domiciles/management');
 Route::get('/domiciles/managment/{domicile}', [DomicileManagmentController::class, 'details']);

@@ -2,7 +2,7 @@
 <div class="container">
     <!--onclick="window.location.reload();"-->
     <a href="{{ app('request')->input('a') }}" class="btn btn-primary" style="float: left;">Domicilios</a>
-    <a href="{{url('client/bookings/'.request()->route()->parameter('client'))}}" class="btn btn-primary" style="float: right;">Reservas</a>
+    <a href="{{url('client/bookings/'.$client->id)}}" class="btn btn-primary" style="float: right;">Reservas</a>
     <h1 class="text-center mb-4" style="font-family: 'Arial Rounded MT Bold', sans-serif">Domicilios</h1>
     @if(Session::has('message'))
         <div class="alert alert-success alert-dismissible fade show">
