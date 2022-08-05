@@ -3,7 +3,10 @@
 namespace App\Http\Controllers\WebController;
 
 use App\Http\Controllers\Controller;
+use App\Models\Booking;
 use App\Models\Client;
+use App\Models\DomicileSale;
+use App\Models\OrderDetail;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\View;
 use Illuminate\View\Factory;
@@ -14,10 +17,18 @@ class ClientManagmentController extends Controller
         $data['clients'] = Client::paginate(5);
         return view('components.client.index', $data);
     }
-    public function domiciles(): Factory|View|Application{
-        return view('components.client.domiciles');
+    public function domiciles(Client $client): Factory|View|Application{
+        $data['domiciles'] = DomicileSale::all()->where('client_id', '=', $client->getAttribute('id'));
+        return view('components.client.domiciles',$data);
     }
-    public function bookings(): Factory|View|Application{
-        return view('components.client.booking');
+
+    public function details(DomicileSale $domicile): Factory|View|Application{
+        $data['details'] = OrderDetail::all()->where('domicile_sale_id', '=', $domicile->getAttribute('id'));
+        return view('components.client.details',$data);
+    }
+
+    public function bookings(Client $client): Factory|View|Application{
+        $data['bookings'] = Booking::all()->where('client_id', '=', $client->getAttribute('id'));
+        return view('components.client.booking',$data);
     }
 }

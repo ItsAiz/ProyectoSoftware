@@ -45,10 +45,11 @@ Route::delete('/employee/destroy/{employee}', [EmployeeController::class, 'destr
 /* Rutas gestión clientes */
 Route::get('/client/management', [ClientManagmentController::class, 'index'])->name('client/management');
 Route::get('/client/domicile/{client}', [ClientManagmentController::class, 'domiciles']);
+Route::get('/client/domicile/details/{domicile}', [ClientManagmentController::class, 'details']);
 Route::get('/client/bookings/{client}', [ClientManagmentController::class, 'bookings']);
-
 /* Rutas gestión domicilios */
 Route::get('/domiciles/management', [DomicileManagmentController::class, 'index'])->name('domiciles/management');
+Route::get('/domiciles/managment/{domicile}', [DomicileManagmentController::class, 'details']);
 
 /* Rutas gestión reservas */
 Route::get('/bookings/management', [BookingManagmentController::class, 'index'])->name('bookings/management');

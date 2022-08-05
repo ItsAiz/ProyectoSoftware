@@ -13,11 +13,11 @@ return new class extends Migration {
             $table->string('name')->nullable(false);
             $table->string('lastName')->nullable(false);
             $table->string('documentType')->nullable(false);
-            $table->integer('documentNumber')->nullable(false)->unique();
-            $table->integer('phoneNumber')->nullable(false)->unique();
+            $table->bigInteger('documentNumber')->nullable(false)->unique();
+            $table->bigInteger('phoneNumber')->nullable(false)->unique();
             $table->string('address')->nullable(false);
             $table->date('hiringDate')->nullable(false);
-            $table->integer('salary')->nullable(false);
+            $table->bigInteger('salary')->nullable(false);
             $table->unsignedBigInteger('idUser');
             $table->foreign('idUser')
                 ->references('id')

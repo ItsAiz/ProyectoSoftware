@@ -2,7 +2,7 @@
 <div class="container">
     <!--onclick="window.location.reload();"-->
     <a href="{{ app('request')->input('a') }}" class="btn btn-primary" style="float: left;">Domicilios</a>
-    <a href="{{url('client/bookings/'.request()->{'client'})}}" class="btn btn-primary" style="float: right;">Reservas</a>
+    <a href="{{url('client/bookings/'.request()->route()->parameter('client'))}}" class="btn btn-primary" style="float: right;">Reservas</a>
     <h1 class="text-center mb-4" style="font-family: 'Arial Rounded MT Bold', sans-serif">Domicilios</h1>
     @if(Session::has('message'))
         <div class="alert alert-success alert-dismissible fade show">
@@ -20,14 +20,18 @@
 
             <tr style="border-color: black">
                 <th>Fecha Domicilio</th>
-                <th>Detalle de Compra</th>
                 <th>Total</th>
+                <th>Detalle de Compra</th>
             </tr>
             </thead>
             <tbody class="text-center">
+            @foreach ($domiciles as $domicile)
                 <tr>
+                    <td>{{$domicile->saleDate}}</td>
+                    <td>{{$domicile->totalCost}}</td>
+                    <td><a href="{{url('client/domicile/details/'.$domicile->id)}}" class="btn btn-primary">Seleccionar</a></td>
                 </tr>
-            </tbody>
+            @endforeach
         </table>
 
     </div>
