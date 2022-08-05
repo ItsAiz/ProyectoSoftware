@@ -33,4 +33,9 @@ class Client extends Model
         return $this->hasMany(DomicileSale::class);
     }
 
+    public function booking(): HasMany
+    {
+        return $this->hasMany(Booking::class);
+    }
+
 }

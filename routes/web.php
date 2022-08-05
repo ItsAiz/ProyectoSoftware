@@ -60,4 +60,7 @@ Route::delete('/removeProduct', [OrderController::class, 'removeProduct']);
 Route::post('/finalizeOrder', [OrderController::class, 'finalizeOrder']);
 
 /* Rutas de solicitud de reservas */
-Route::get('/reservation', [BookingController::class, 'index'])->name('reservation');
+Route::get('/booking', [BookingController::class, 'index'])->name('booking');
+Route::get('/booking/create', [BookingController::class, 'create'])->name('booking/create');
+Route::post('/booking/store', [BookingController::class, 'store']);
+Route::delete('/booking/destroy/{booking}', [BookingController::class, 'destroy']);

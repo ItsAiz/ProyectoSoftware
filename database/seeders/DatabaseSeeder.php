@@ -2,10 +2,11 @@
 
 namespace Database\Seeders;
 
-use Database\Seeders\Web\CategorySeeder;
+use Illuminate\Database\Seeder;
 use Database\Seeders\Web\RolSeeder;
 use Database\Seeders\Web\UserSeeder;
-use Illuminate\Database\Seeder;
+use Database\Seeders\Web\CategorySeeder;
+use Database\Seeders\Web\RestaurantTableSeeder;
 
 class DatabaseSeeder extends Seeder
 {
@@ -15,6 +16,7 @@ class DatabaseSeeder extends Seeder
         $this->call(RolSeeder::class);
         $this->call(UserSeeder::class);
         $this->call(CategorySeeder::class);
+        $this->call(RestaurantTableSeeder::class);
     }
 
 }

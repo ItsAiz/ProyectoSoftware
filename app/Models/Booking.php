@@ -18,12 +18,19 @@ class Booking extends Model
         'bookingDate',
         'bookingHour',
         'description',
-        'restaurant_table_id'
+        'restaurant_table_id',
+        'status',
+        'client_id'
     ];
 
     public function restaurantTable(): BelongsTo
     {
         return $this->belongsTo(RestaurantTable::class);
+    }
+
+    public function client(): BelongsTo
+    {
+        return $this->belongsTo(Client::class);
     }
 
 }
