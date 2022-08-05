@@ -51,7 +51,7 @@
                         <td>{{$employee->address}}</td>
                         <td>{{$employee->hiringDate}}</td>
                         <td>{{$employee->salary}}</td>
-                        <td>{{$employee->idUser}}</td>
+                        <td>{{$employee->user_id}}</td>
                         <td>
 
                             <a href="{{url('employee/edit/'.$employee->id)}}" class="btn btn-primary">Editar</a>

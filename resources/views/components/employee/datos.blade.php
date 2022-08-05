@@ -1,5 +1,6 @@
 @extends('layouts.app')
 @section('content')
+    <div class="col-11 col-md-6 mx-auto">
 <h1 class="text-center mt-md-5" style="font-family: 'Arial Rounded MT Bold', sans-serif">
     Datos Personales
 </h1>
@@ -59,4 +60,5 @@
     <label for="salary">Salario</label>
     <input type="number" class="form-control" name="salary" value="{{$employee->salary}}" disabled>
 </div>
+    </div>
 @endsection
