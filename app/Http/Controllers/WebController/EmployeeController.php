@@ -10,6 +10,7 @@ use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
 use Illuminate\Routing\Redirector;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\View\Factory;
 
@@ -43,7 +44,7 @@ class EmployeeController extends Controller
             'address'=>$request->get('address'),
             'hiringDate'=>$request->get('hiringDate'),
             'salary'=>$request->get('salary'),
-            'idUser'=>$user->getAttribute('id')
+            'user_id'=>$user->getAttribute('id')
         ]);
         $employee->save();
         return redirect('employee/management')->with('message', 'Empleado agregado correctamente');
@@ -63,5 +64,10 @@ class EmployeeController extends Controller
         User::where('id',$employee->getAttribute('idUser'))->delete();
         $employee->delete();
         return redirect('employee/management')->with('message', 'Empleado eliminado correctamente');
+    }
+    public function show(){
+        $user = User::all()->find(Auth::id());
+        $employee = $user->employee;
+        return view('components.employee.datos')->with(['employee'=>$employee]);
     }
 }

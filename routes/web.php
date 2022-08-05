@@ -66,3 +66,6 @@ Route::get('/booking', [BookingController::class, 'index'])->name('booking');
 Route::get('/booking/create', [BookingController::class, 'create'])->name('booking/create');
 Route::post('/booking/store', [BookingController::class, 'store']);
 Route::delete('/booking/destroy/{booking}', [BookingController::class, 'destroy']);
+
+/* Rutas empleado módulo */
+Route::get('/employee/data', [EmployeeController::class, 'show'])->name('employee/data');

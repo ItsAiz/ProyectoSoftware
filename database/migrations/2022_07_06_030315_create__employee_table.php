@@ -18,12 +18,12 @@ return new class extends Migration {
             $table->string('address')->nullable(false);
             $table->date('hiringDate')->nullable(false);
             $table->bigInteger('salary')->nullable(false);
-            $table->unsignedBigInteger('idUser');
-            $table->foreign('idUser')
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')
                 ->references('id')
                 ->on('users')
-                ->onDelete('cascade')
-                ->onUpdate('cascade');
+                ->onUpdate('cascade')
+                ->onDelete('cascade');
         });
     }
 

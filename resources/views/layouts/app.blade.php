@@ -154,11 +154,11 @@
             @endif
 
             @if(Auth::user()->rol->description == 'employee')
-
-                <a href="#">
+                <a href="{{ route('employee/data') }}"
+                   class="{{request()->routeIs('employee/data') ? 'selected' : ''}}">
                     <div class="option">
-                        <i class="fa-solid fa-user-tie"></i>
-                        <span>Datos&nbsp;personales</span>
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Información Personal</span>
                     </div>
                 </a>
 

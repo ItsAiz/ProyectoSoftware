@@ -42,10 +42,9 @@ class User extends Authenticatable
 
 
 
-    // Pendiente
-    public function employees()
+    public function employee():HasOne
     {
-        return $this->belongsTo(Employee::class);
+        return $this->hasOne(Employee::class);
     }
 
 }
