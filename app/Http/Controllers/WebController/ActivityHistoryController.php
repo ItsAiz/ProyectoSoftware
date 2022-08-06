@@ -7,29 +7,25 @@ use App\Models\Booking;
 use App\Models\Client;
 use App\Models\DomicileSale;
 use App\Models\OrderDetail;
+use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
+use Illuminate\Support\Facades\Auth;
 
-class ClientManagmentController extends Controller
+class ActivityHistoryController extends Controller
 {
 
     public function __construct()
     {
         $this->middleware('auth');
-        $this->middleware('isAdministrator');
+        $this->middleware('isClient');
     }
 
     public function index(): Factory|View|Application
     {
-        $data['clients'] = Client::paginate(10);
-        return view('components.client.index', $data);
-    }
-
-    public function domiciles(Client $client): Factory|View|Application
-    {
-        $domiciles = DomicileSale::all()->where('client_id', '=', $client->getAttribute('id'));
-        return view('components.client.domiciles')->with(['domiciles' => $domiciles, 'client' => $client]);
+        $user = User::all()->find(Auth::id());
+        return view('components.client.domiciles')->with(['domiciles' => $user->client->domicileSale, 'client' => $user->client]);
     }
 
     public function details(DomicileSale $domicile): Factory|View|Application

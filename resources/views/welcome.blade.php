@@ -38,16 +38,16 @@
 <body>
 
 <!-- NAVBAR -->
-@include('components.navbar')
-@include('components.login')
-@include('components.register')
+@include('components.welcome.navbar')
+@include('components.welcome.login')
+@include('components.welcome.register')
 
 <!-- CONTENT -->
 @yield('start')
 @yield('makeOrder')
 
 <!-- FOOTER -->
-@include('components.footer')
+@include('components.welcome.footer')
 
 <!-- Scripts -->
 <script src="{{asset('js/app.js')}}"></script>

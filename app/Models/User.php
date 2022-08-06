@@ -35,16 +35,14 @@ class User extends Authenticatable
         return $this->belongsTo(Rol::class);
     }
 
+    public function employee(): HasOne
+    {
+        return $this->hasOne(Employee::class);
+    }
+
     public function client(): HasOne
     {
         return $this->hasOne(Client::class);
-    }
-
-
-
-    public function employee():HasOne
-    {
-        return $this->hasOne(Employee::class);
     }
 
 }

@@ -131,7 +131,7 @@
 
     </section>
 
-    <section class="wallpaper w-Color-Four d-flex align-items-center" id="">
+    <section class="wallpaper w-Color-Two d-flex align-items-center" id="">
 
         <div class="container">
 
@@ -218,7 +218,7 @@
 
     </section>
 
-    <section class="wallpaper w-Color-Two d-flex align-items-center" id="">
+    <section class="wallpaper w-Color-One d-flex align-items-center" id="">
 
         <div class="container-fluid">
 

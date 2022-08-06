@@ -96,7 +96,7 @@
 
             <a href="{{ route('home') }}" class="{{request()->routeIs('home') ? 'selected' : ''}}">
                 <div class="option">
-                    <i class="fas fa-home"></i>
+                    <i class="fa-solid fa-circle-check"></i>
                     @if(Auth::user()->rol->description == 'administrator')
                         <span>Administrador</span>
                     @elseif(Auth::user()->rol->description == 'employee')
@@ -158,7 +158,7 @@
                    class="{{request()->routeIs('employee/data') ? 'selected' : ''}}">
                     <div class="option">
                         <i class="fa-solid fa-bag-shopping"></i>
-                        <span>Información Personal</span>
+                        <span>Información&nbsp;Personal</span>
                     </div>
                 </a>
 
@@ -180,6 +180,15 @@
 
             @if(Auth::user()->rol->description == 'client')
 
+                <a href="{{ route('booking') }}"
+                   class="{{request()->routeIs('booking') ? 'selected' : ''}}">
+                    <div class="option">
+                        <i class="fa-solid fa-bell-concierge"></i>
+                        <span>Solicitar&nbsp;reservas</span>
+                    </div>
+                </a>
+
+
                 <a href="{{ url('makeOrder/' . 1) }}">
                     <div class="option">
                         <i class="fa-solid fa-bag-shopping"></i>
@@ -187,14 +196,8 @@
                     </div>
                 </a>
 
-                <a href="{{ url('/booking') }}">
-                    <div class="option">
-                        <i class="fa-solid fa-bell-concierge"></i>
-                        <span>Solicitar&nbsp;reservas</span>
-                    </div>
-                </a>
-
-                <a href="#">
+                <a href="{{ route('activityHistory') }}"
+                   class="{{request()->routeIs('activityHistory') ? 'selected' : ''}}">
                     <div class="option">
                         <i class="fa-solid fa-book-open"></i>
                         <span>Historial&nbsp;actividades</span>

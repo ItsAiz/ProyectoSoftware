@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-
     <div class="container">
 
         <h1 class="text-center mb-4" style="font-family: 'Arial Rounded MT Bold', sans-serif">Reservas</h1>
@@ -9,6 +8,13 @@
         @if(\Illuminate\Support\Facades\Session::has('message'))
             <div class="alert alert-success alert-dismissible fade show">
                 {{\Illuminate\Support\Facades\Session::get('message')}}
+                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+            </div>
+        @endif
+
+        @if(session('errorMessage'))
+            <div class="alert alert-danger alert-dismissible fade show">
+                {{session('errorMessage')}}
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif

@@ -10,8 +10,17 @@ use Illuminate\View\Factory;
 
 class BookingManagmentController extends Controller
 {
-    public function index(): Factory|View|Application{
-        $data['bookings'] = Booking::paginate(5);
-        return view('components.booking.index',$data);
+
+    public function __construct()
+    {
+        $this->middleware('auth');
+        $this->middleware('isAdministrator');
     }
+
+    public function index(): Factory|View|Application
+    {
+        $data['bookings'] = Booking::paginate(10);
+        return view('components.booking.index', $data);
+    }
+
 }

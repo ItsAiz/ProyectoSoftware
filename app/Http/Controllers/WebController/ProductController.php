@@ -24,7 +24,7 @@ class ProductController extends Controller
 
     public function index(): Factory|View|Application
     {
-        $data['products'] = Product::paginate(5);
+        $data['products'] = Product::paginate(10);
         return view('components.product.index', $data);
     }
 

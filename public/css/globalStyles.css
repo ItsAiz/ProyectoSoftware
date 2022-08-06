@@ -108,8 +108,7 @@ body {
 }
 
 .w-Color-Two {
-    background-image: url('../images/wallpapers/homeWallpaper.jpg');
-    height: 100vh;
+    background-image: url('../images/wallpapers/specialsWallpaper.jpg');
     background-position: center;
     background-repeat: no-repeat;
     background-size: cover;
@@ -122,9 +121,9 @@ body {
     content: "";
     width: 100%;
     height: 100%;
-    background: rgba(128, 128, 128, 0.25);
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
+    background: rgba(0, 0, 0, 0.8);
+    -webkit-backdrop-filter: blur(7px);
+    backdrop-filter: blur(2px);
     z-index: -1;
 }
 
@@ -149,35 +148,13 @@ body {
     z-index: -1;
 }
 
-.w-Color-Four {
-    background-image: url('../images/wallpapers/specialsWallpaper.jpg');
-    background-position: center;
-    background-repeat: no-repeat;
-    background-size: cover;
-    -webkit-backdrop-filter: blur(4px);
-    backdrop-filter: blur(4px);
-}
-
-.w-Color-Four:before {
-    position: absolute;
-    content: "";
-    width: 100%;
-    height: 100%;
-    background: rgba(0, 0, 0, 0.8);
-    -webkit-backdrop-filter: blur(7px);
-    backdrop-filter: blur(2px);
-    z-index: -1;
-}
-
 /* Formulario principal */
-
 .custom-form:focus {
     box-shadow: 0 0 15px rgba(255, 255, 255, 0);
     border-color: rgba(255, 255, 255, 0);
 }
 
 /* Boton principal */
-
 .custom-main-button {
     width: 30%;
     background: #eea520;

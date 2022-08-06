@@ -24,7 +24,7 @@ class OrderController extends Controller
     public function getMakeOrder(Category $category): Factory|View|Application
     {
         $products = $category->product()->get();
-        return view("components.makeOrder", ['products' => $products, 'total' => $this->getTotal()]);
+        return view("components.welcome.makeOrder", ['products' => $products, 'total' => $this->getTotal()]);
     }
 
     public function addProduct(Product $product): RedirectResponse

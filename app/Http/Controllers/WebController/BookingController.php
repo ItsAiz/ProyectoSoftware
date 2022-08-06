@@ -4,6 +4,7 @@ namespace App\Http\Controllers\WebController;
 
 use App\Models\User;
 use App\Models\Booking;
+use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Routing\Redirector;
 use Illuminate\Contracts\View\View;
@@ -67,6 +68,12 @@ class BookingController extends Controller
 
     public function destroy(Booking $booking): Redirector|Application|RedirectResponse
     {
+        $result = Carbon::now()->gt(Carbon::create($booking->getAttribute('bookingDate')));
+
+        if ($result) {
+            return redirect('booking')->with('errorMessage', 'No se ha podido cancelar la reserva');
+        }
+
         $booking->delete();
         return redirect('booking')->with('message', 'Reserva cancelada correctamente');
     }

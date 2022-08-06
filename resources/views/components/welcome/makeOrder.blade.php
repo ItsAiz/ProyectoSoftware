@@ -4,7 +4,7 @@
     <style>
 
         body {
-            background: url({{asset('images/wallpapers/prueba6.png')}});
+            background: url({{asset('images/orderBackground/background.png')}});
             overflow-x: hidden;
         }
 
@@ -295,7 +295,7 @@
                 @endif
 
                 @if(session('listOfProducts') == null)
-                    <img class="img-fluid" src="{{asset('images/wallpapers/bannerOrder.png')}}" width="300" alt="..."/>
+                    <img class="img-fluid" src="{{asset('images/orderBackground/bannerOrder.png')}}" width="300" alt="..."/>
                 @else
 
                     <div class="card" style="background-color: rgba(255,255,255,0.5)">

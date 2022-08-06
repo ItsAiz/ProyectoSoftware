@@ -12,6 +12,8 @@ use App\Http\Controllers\WebController\DomicileManagmentController;
 use App\Http\Controllers\WebController\BookingManagmentController;
 use App\Http\Controllers\WebController\OrderController;
 use App\Http\Controllers\WebController\BookingController;
+use App\Http\Controllers\WebController\ActivityHistoryController;
+use App\Http\Controllers\WebController\EmployeeActionController;
 
 /* Rutas de la vista welcome */
 Route::get('/', [welcomeController::class, 'getStart'])->name('start');
@@ -67,5 +69,10 @@ Route::get('/booking/create', [BookingController::class, 'create'])->name('booki
 Route::post('/booking/store', [BookingController::class, 'store']);
 Route::delete('/booking/destroy/{booking}', [BookingController::class, 'destroy']);
 
+/* Rutas de historial de actividades */
+Route::get('/activityHistory', [ActivityHistoryController::class, 'index'])->name('activityHistory');
+Route::get('/domicile/details/{domicile}', [ActivityHistoryController::class, 'details']);
+Route::get('/bookings/{client}', [ActivityHistoryController::class, 'bookings']);
+
 /* Rutas empleado módulo */
-Route::get('/employee/data', [EmployeeController::class, 'show'])->name('employee/data');
+Route::get('/employee/data', [EmployeeActionController::class, 'show'])->name('employee/data');

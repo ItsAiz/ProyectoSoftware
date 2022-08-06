@@ -1,5 +1,6 @@
 @extends('layouts.app')
 
+@section('content')
     <div class="container">
 
         <h1 class="text-center mb-4" style="font-family: 'Arial Rounded MT Bold', sans-serif">Clientes</h1>
@@ -10,7 +11,6 @@
                 <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
             </div>
         @endif
-
 
         <div class="mt-3 mb-3" style="overflow-x:auto;">
 
@@ -29,18 +29,21 @@
                 </thead>
 
                 <tbody class="text-center">
-                    @foreach ($clients as $client)
+                @foreach ($clients as $client)
                     <tr>
                         <td>{{$client->name}}</td>
                         <td>{{$client->lastName}}</td>
                         <td>{{$client->documentType}}</td>
                         <td>{{$client->documentNumber}}</td>
-                        <td><a href="{{url('client/domicile/'.$client->id)}}" class="btn btn-primary">Seleccionar</a></td>
+                        <td><a href="{{url('client/domicile/'.$client->id)}}" class="btn btn-primary">Seleccionar</a>
+                        </td>
                     </tr>
+                @endforeach
                 </tbody>
-                    @endforeach
+
             </table>
 
         </div>
 
     </div>
+@endsection

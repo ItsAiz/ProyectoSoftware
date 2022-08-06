@@ -3,9 +3,9 @@
 namespace App\Http\Controllers\WebController;
 
 use App\Http\Controllers\Controller;
-use Illuminate\Contracts\View\View;
-use Illuminate\Contracts\View\Factory;
-use Illuminate\Contracts\Foundation\Application;
+use App\Models\User;
+use Illuminate\Http\RedirectResponse;
+use Illuminate\Support\Facades\Auth;
 
 class HomeController extends Controller
 {
@@ -15,9 +15,19 @@ class HomeController extends Controller
         $this->middleware('auth');
     }
 
-    public function index(): Factory|View|Application
+    public function index(): RedirectResponse
     {
-        return view('components.home');
+        $user = User::all()->find(Auth::id());
+
+        if ($user->rol->description == 'administrator') {
+            return redirect()->route('product/management');
+        }
+
+        if ($user->rol->description == 'employee') {
+            return redirect()->route('employee/data');
+        }
+
+        return redirect()->route('booking');
     }
 
 }

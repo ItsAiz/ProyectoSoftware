@@ -11,7 +11,7 @@ class WelcomeController extends Controller
 {
     public function getStart(): Factory|View|Application
     {
-        return view("components.start");
+        return view("components.welcome.start");
     }
 
     public function getMenu(): string

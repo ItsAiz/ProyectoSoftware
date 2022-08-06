@@ -12,6 +12,7 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Employee extends Model
 {
     use HasFactory;
+
     public $timestamps = false;
 
     protected $guarded = ['id'];
@@ -27,10 +28,10 @@ class Employee extends Model
         'salary',
         'user_id'
     ];
+
     public function user(): BelongsTo
     {
         return $this->belongsTo(User::class);
     }
-
 
 }

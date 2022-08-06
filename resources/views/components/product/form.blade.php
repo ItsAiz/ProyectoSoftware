@@ -3,7 +3,6 @@
 </h1>
 
 @if(count($errors)>0)
-
     <div class="alert alert-danger" role="alert">
         <ul>
             @foreach($errors->all() as $error)
@@ -11,7 +10,6 @@
             @endforeach
         </ul>
     </div>
-
 @endif
 
 <div class="form-group">
@@ -23,7 +21,6 @@
     <label for="description">Descripción</label>
     <input type="text" class="form-control" name="description"
            value="{{isset($product->description)?$product->description:old('description')}}">
-
 </div>
 
 <div class="form-group mt-3">
