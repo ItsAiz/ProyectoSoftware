@@ -76,3 +76,6 @@ Route::get('/bookings/{client}', [ActivityHistoryController::class, 'bookings'])
 
 /* Rutas empleado módulo */
 Route::get('/employee/data', [EmployeeActionController::class, 'show'])->name('employee/data');
+Route::get('/employee/reservations', [EmployeeActionController::class, 'reservationList'])->name('employee/reservations');
+Route::get('/employee/reservations/{booking}', [EmployeeActionController::class, 'changeStatus']);
+Route::get('/employee/domiciles', [EmployeeActionController::class, 'domiciles'])->name('employee/domiciles');

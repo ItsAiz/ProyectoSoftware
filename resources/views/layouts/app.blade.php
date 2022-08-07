@@ -162,17 +162,19 @@
                     </div>
                 </a>
 
-                <a href="#">
+                <a href="{{ route('employee/reservations') }}"
+                   class="{{request()->routeIs('employee/reservations') ? 'selected' : ''}}">
                     <div class="option">
-                        <i class="fa-solid fa-book"></i>
-                        <span>Gestión&nbsp;reservas</span>
+                        <i class="fa-solid fa-bag-shopping"></i>
+                        <span>Reservas</span>
                     </div>
                 </a>
 
-                <a href="#">
+                <a href="{{ route('employee/domiciles') }}"
+                   class="{{request()->routeIs('employee/domiciles') ? 'selected' : ''}}">
                     <div class="option">
                         <i class="fa-solid fa-bag-shopping"></i>
-                        <span>Gestión&nbsp;domicilios</span>
+                        <span>Domicilios del día</span>
                     </div>
                 </a>
 
