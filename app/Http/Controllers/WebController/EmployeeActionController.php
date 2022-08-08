@@ -5,6 +5,7 @@ namespace App\Http\Controllers\WebController;
 use App\Http\Controllers\Controller;
 use App\Models\Booking;
 use App\Models\DomicileSale;
+use App\Models\OrderDetail;
 use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
@@ -30,13 +31,12 @@ class EmployeeActionController extends Controller
     }
 
     public function reservationList(){
-        $todayDate = date("y/m/d");
         date_default_timezone_set('america/Bogota');
+        $todayDate = date("Y-m-d");
         $systemHour = date("H:i");
         $bookings['bookings'] = Booking::all()->where('bookingDate', '=', $todayDate)
         ->where('bookingHour','>',$systemHour)
         ->where('status', '=',0);
-
         return view('components.employee.reservationList',$bookings);
     }
 
@@ -46,8 +46,13 @@ class EmployeeActionController extends Controller
     }
 
     public function domiciles(){
-        $todayDate = date("y/m/d");
+        $todayDate = date("Y-m-d");
         $data['domiciles'] = DomicileSale::all()->where('saleDate','=',$todayDate);
-        return view('components.domicile.index', $data);
+        return view('components.employee.domiciles', $data);
+    }
+    public function details(DomicileSale $domicile): \Illuminate\View\Factory|View|Application
+    {
+        $data['details'] = OrderDetail::all()->where('domicile_sale_id', '=', $domicile->getAttribute('id'));
+        return view('components.employee.details', $data);
     }
 }

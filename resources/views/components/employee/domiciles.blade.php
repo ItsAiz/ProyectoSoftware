@@ -40,7 +40,7 @@
                         <td>{{$domicile->address}}</td>
                         <td>{{$domicile->phoneNumber}}</td>
                         <td>{{$domicile->totalCost}}</td>
-                        <td><a href="{{url('/domiciles/managment/'.$domicile->id)}}" class="btn btn-primary">Visualizar
+                        <td><a href="{{url('/employee/management/'.$domicile->id)}}" class="btn btn-primary">Visualizar
                                 Detalle</a></td>
                     </tr>
                 @endforeach

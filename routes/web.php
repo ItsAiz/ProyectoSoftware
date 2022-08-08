@@ -52,7 +52,7 @@ Route::get('/client/bookings/{client}', [ClientManagmentController::class, 'book
 
 /* Rutas gestión domicilios */
 Route::get('/domiciles/management', [DomicileManagmentController::class, 'index'])->name('domiciles/management');
-Route::get('/domiciles/managment/{domicile}', [DomicileManagmentController::class, 'details']);
+Route::get('/domiciles/management/{domicile}', [DomicileManagmentController::class, 'details']);
 
 /* Rutas gestión reservas */
 Route::get('/bookings/management', [BookingManagmentController::class, 'index'])->name('bookings/management');
@@ -79,3 +79,4 @@ Route::get('/employee/data', [EmployeeActionController::class, 'show'])->name('e
 Route::get('/employee/reservations', [EmployeeActionController::class, 'reservationList'])->name('employee/reservations');
 Route::get('/employee/reservations/{booking}', [EmployeeActionController::class, 'changeStatus']);
 Route::get('/employee/domiciles', [EmployeeActionController::class, 'domiciles'])->name('employee/domiciles');
+Route::get('/employee/management/{domicile}', [EmployeeActionController::class, 'details']);
