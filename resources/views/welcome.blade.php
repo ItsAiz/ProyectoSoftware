@@ -44,6 +44,7 @@
 
 <!-- CONTENT -->
 @yield('start')
+@yield('menu')
 @yield('makeOrder')
 
 <!-- FOOTER -->

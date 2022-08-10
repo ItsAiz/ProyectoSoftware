@@ -10,7 +10,7 @@ use App\Models\User;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
-use Illuminate\Http\Request;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
 
@@ -30,29 +30,34 @@ class EmployeeActionController extends Controller
         return view('components.employee.data')->with(['employee' => $employee]);
     }
 
-    public function reservationList(){
+    public function reservationList(): Factory|View|Application
+    {
         date_default_timezone_set('america/Bogota');
         $todayDate = date("Y-m-d");
         $systemHour = date("H:i");
         $bookings['bookings'] = Booking::all()->where('bookingDate', '=', $todayDate)
-        ->where('bookingHour','>',$systemHour)
-        ->where('status', '=',0);
-        return view('components.employee.reservationList',$bookings);
+            ->where('bookingHour', '>', $systemHour)
+            ->where('status', '=', 0);
+        return view('components.employee.reservationList', $bookings);
     }
 
-    public function changeStatus(Booking $booking){
+    public function changeStatus(Booking $booking): RedirectResponse
+    {
         DB::table('bookings')->where('id', '=', $booking->getAttribute('id'))->update(['status' => 1]);
         return back();
     }
 
-    public function domiciles(){
+    public function domiciles(): Factory|View|Application
+    {
         $todayDate = date("Y-m-d");
-        $data['domiciles'] = DomicileSale::all()->where('saleDate','=',$todayDate);
+        $data['domiciles'] = DomicileSale::all()->where('saleDate', '=', $todayDate);
         return view('components.employee.domiciles', $data);
     }
+
     public function details(DomicileSale $domicile): \Illuminate\View\Factory|View|Application
     {
         $data['details'] = OrderDetail::all()->where('domicile_sale_id', '=', $domicile->getAttribute('id'));
         return view('components.employee.details', $data);
     }
+
 }

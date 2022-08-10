@@ -17,7 +17,9 @@ use App\Http\Controllers\WebController\EmployeeActionController;
 
 /* Rutas de la vista welcome */
 Route::get('/', [welcomeController::class, 'getStart'])->name('start');
+Route::post('/sendMessage', [WelcomeController::class, 'sendMessage']);
 Route::get('/menu', [welcomeController::class, 'getMenu'])->name('menu');
+Route::post('/downloadMenu', [WelcomeController::class, 'downloadMenu']);
 
 /* Rutas de autorización, paquete basico de Laravel */
 Auth::routes();

@@ -20,7 +20,8 @@
                 </li>
 
                 <li class="nav-item">
-                    <a class="nav-link" aria-current="page" href="{{ route('menu') }}" id="link-menu"> Menú</a>
+                    <a class="nav-link {{request()->routeIs('menu') ? 'link-active' : '' }}" aria-current="page"
+                       href="{{ route('menu') }}" id="link-menu"> Menú</a>
                 </li>
 
                 <li class="nav-item">
@@ -50,7 +51,8 @@
                                 </li>
 
                                 @if (Route::has('register'))
-                                    <li><a class="button-select dropdown-item" href="{{ route('register') }}" data-bs-toggle="modal"
+                                    <li><a class="button-select dropdown-item" href="{{ route('register') }}"
+                                           data-bs-toggle="modal"
                                            data-bs-target="#registerModal">Registrarse</a></li>
                                 @endif
 

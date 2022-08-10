@@ -44,7 +44,7 @@
                         <label for="documentTypeInput" class="col-md-5 col-form-label text-md-right">{{ __('Tipo documento') }}</label>
 
                         <div class="col-md-6">
-                                <select class="custom-form form-control" id="documentType" name="documentType" required="required">
+                                <select class="form-select form-control" id="documentType" name="documentType" required="required">
                                     <option value="Cedula de ciudadania"{{'documentType' == "Cedula de ciudadania"? 'selected': ''}}>Cédula de ciudadania</option>
                                     <option value="Cedula de extranjeria"{{'documentType' == "Cedula de extranjeria"? 'selected': ''}}>Cédula de extranjería</option>
                                     <option value="NIT"{{'documentType' == "NIT"? 'selected': ''}}>NIT</option>

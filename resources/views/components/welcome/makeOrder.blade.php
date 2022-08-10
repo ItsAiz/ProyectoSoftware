@@ -295,7 +295,8 @@
                 @endif
 
                 @if(session('listOfProducts') == null)
-                    <img class="img-fluid" src="{{asset('images/orderBackground/bannerOrder.png')}}" width="300" alt="..."/>
+                    <img class="img-fluid" src="{{asset('images/orderBackground/bannerOrder.png')}}" width="300"
+                         alt="..."/>
                 @else
 
                     <div class="card" style="background-color: rgba(255,255,255,0.5)">
@@ -393,7 +394,7 @@
 
             <div class="container-fluid mt-5">
 
-                <div class="col-5 mx-auto" style="border-style: solid; border-width: 2px; border-color: rgba(255,255,255,0);
+                <div class="col-12 col-md-5 mx-auto" style="border-style: solid; border-width: 2px; border-color: rgba(255,255,255,0);
             background: rgba(0,0,0,0.80)">
 
                     <div class="col-12 mx-auto">

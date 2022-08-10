@@ -51,12 +51,6 @@
                             <button type="submit" class="btn btn-warning">
                                 {{ __('Ingresar') }}
                             </button>
-
-                            @if (Route::has('password.request'))
-                                <a class="custom-form btn btn-outline text-white" href="{{ route('password.request') }}">
-                                    {{ __('¿Olvidaste tu contraseña?') }}
-                                </a>
-                            @endif
                         </div>
                     </div>
 

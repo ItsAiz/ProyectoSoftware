@@ -218,7 +218,7 @@
 
     </section>
 
-    <section class="wallpaper w-Color-One d-flex align-items-center" id="">
+    <section class="wallpaper w-Color-One d-flex align-items-center" id="contact">
 
         <div class="container-fluid">
 
@@ -231,34 +231,52 @@
 
                 <div class="col-11 mt-5 mx-auto">
 
-                    <form>
-                        <!-- Name input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label text-white" for="form4Example1"
-                                   style="font-weight: bolder;">Nombre</label>
-                            <input type="text" id="form4Example1" class="form-control custom-form"/>
+                    <form action="{{url('/sendMessage')}}" method="post" enctype="multipart/form-data">
+                        @csrf
+
+                        @if(count($errors)>0)
+                            <div class="alert alert-danger" role="alert">
+                                <ul>
+                                    @foreach($errors->all() as $error)
+                                        <li>{{$error}}</li>
+                                    @endforeach
+                                </ul>
+                            </div>
+                        @endif
+
+                        <div class="form-group mb-4">
+                            <label class="text-white fs-5 mb-2 w-100" for="name">Nombre
+                                <input type="text" class="form-control custom-form" name="name">
+                            </label>
                         </div>
 
-                        <!-- Email input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label text-white" for="form4Example2" style="font-weight: bolder;">Correo
-                                electronico</label>
-                            <input type="email" id="form4Example2" class="form-control custom-form"/>
+                        <div class="form-group mb-4">
+                            <label class="text-white fs-5 mb-2 w-100" for="email">Correo
+                                <input type="email" class="form-control custom-form" name="email">
+                            </label>
                         </div>
 
-                        <!-- Message input -->
-                        <div class="form-outline mb-4">
-                            <label class="form-label text-white" for="form4Example3" style="font-weight: bolder;">Mensaje</label>
-                            <textarea class="form-control custom-form" id="form4Example3" rows="4"
-                                      style="max-height: 7rem;"></textarea>
+                        <div class="form-group mb-4">
+                            <label class="text-white fs-5 mb-2 w-100" for="message">Mensaje
+                                <textarea type="text" class="form-control custom-form" name="message"
+                                          style="height: 7rem; min-height: 7rem; max-height: 7rem;">
+                                </textarea>
+                            </label>
                         </div>
 
-                        <!-- Submit button -->
                         <div class="d-flex justify-content-center">
                             <button type="submit" class="btn btn-warning btn-block mb-4 custom-main-button">Enviar
                             </button>
                         </div>
+
                     </form>
+
+                    @if(session('message'))
+                        <div class="alert alert-success alert-dismissible fade show mt-2">
+                            {{session('message')}}
+                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+                        </div>
+                    @endif
 
                 </div>
 

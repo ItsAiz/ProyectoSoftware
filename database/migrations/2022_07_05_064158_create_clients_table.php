@@ -13,7 +13,7 @@ return new class extends Migration {
             $table->string('name');
             $table->string('lastName');
             $table->string('documentType');
-            $table->integer('documentNumber');
+            $table->string('documentNumber');
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')
                 ->references('id')
