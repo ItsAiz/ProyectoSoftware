@@ -6,13 +6,14 @@ use App\Http\Controllers\Controller;
 use App\Http\Requests\Client\ClientRequest;
 use App\Models\Client;
 use App\Models\User;
+use Illuminate\Http\RedirectResponse;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 
 class ClientController extends Controller
 {
 
-    public function store(ClientRequest $request)
+    public function store(ClientRequest $request): RedirectResponse
     {
         $user = new User([
             'email' => $request->get('email'),
@@ -31,6 +32,8 @@ class ClientController extends Controller
         $client->save();
 
         Auth::login($user);
+
+        return redirect()->route('home');
     }
 
 }

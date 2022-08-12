@@ -12,6 +12,12 @@
             </div>
         @endif
 
+        <form action="{{url('send/orders')}}" class="d-inline" method='post'>
+            @csrf
+            {{method_field('POST')}}
+            <input type='submit' value="Enviar y guardar información" class="btn btn-success">
+        </form>
+
         <div class="mt-3 mb-3" style="overflow-x:auto;">
 
             <table class="table table-striped table-bordered border-dark productsTable" style="width: 100%;">

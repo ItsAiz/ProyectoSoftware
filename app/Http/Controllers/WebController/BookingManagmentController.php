@@ -19,7 +19,7 @@ class BookingManagmentController extends Controller
 
     public function index(): Factory|View|Application
     {
-        $data['bookings'] = Booking::paginate(10);
+        $data['bookings'] = Booking::all();
         return view('components.booking.index', $data);
     }
 

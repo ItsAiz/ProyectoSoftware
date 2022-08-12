@@ -9,6 +9,7 @@ use Illuminate\Database\Eloquent\Relations\HasMany;
 
 /**
  * @method static paginate(int $int)
+ * @method static orderBy(string $string, string $string1)
  */
 class DomicileSale extends Model
 {

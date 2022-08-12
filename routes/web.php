@@ -14,6 +14,8 @@ use App\Http\Controllers\WebController\OrderController;
 use App\Http\Controllers\WebController\BookingController;
 use App\Http\Controllers\WebController\ActivityHistoryController;
 use App\Http\Controllers\WebController\EmployeeActionController;
+use App\Http\Controllers\WebController\AdministratorActionController;
+use Illuminate\Support\Facades\Artisan;
 
 /* Rutas de la vista welcome */
 Route::get('/', [welcomeController::class, 'getStart'])->name('start');
@@ -82,3 +84,11 @@ Route::get('/employee/reservations', [EmployeeActionController::class, 'reservat
 Route::get('/employee/reservations/{booking}', [EmployeeActionController::class, 'changeStatus']);
 Route::get('/employee/domiciles', [EmployeeActionController::class, 'domiciles'])->name('employee/domiciles');
 Route::get('/employee/management/{domicile}', [EmployeeActionController::class, 'details']);
+
+/* Rutas limpiar BD y enviar info */
+Route::post('/send/orders', [AdministratorActionController::class, 'sendOrders']);
+
+/* Ruta para crear enlace simbolico en el servidor */
+Route::get('link', function () {
+    Artisan::call('storage:link');
+})->middleware('auth');

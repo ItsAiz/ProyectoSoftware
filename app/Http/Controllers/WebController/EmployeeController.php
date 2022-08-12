@@ -25,7 +25,7 @@ class EmployeeController extends Controller
 
     public function index(): Factory|View|Application
     {
-        $data['employees'] = Employee::paginate(10);
+        $data['employees'] = Employee::all();
         return view('components.employee.index', $data);
     }
 

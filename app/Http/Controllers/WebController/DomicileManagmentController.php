@@ -20,7 +20,7 @@ class DomicileManagmentController extends Controller
 
     public function index(): Factory|View|Application
     {
-        $data['domiciles'] = DomicileSale::paginate(10);
+        $data['domiciles'] = DomicileSale::all();
         return view('components.domicile.index', $data);
     }
 

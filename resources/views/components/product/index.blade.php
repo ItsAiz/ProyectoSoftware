@@ -78,7 +78,5 @@
 
         </div>
 
-        {!! $products->links() !!}
-
     </div>
 @endsection

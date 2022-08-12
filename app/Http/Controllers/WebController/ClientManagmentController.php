@@ -22,7 +22,7 @@ class ClientManagmentController extends Controller
 
     public function index(): Factory|View|Application
     {
-        $data['clients'] = Client::paginate(10);
+        $data['clients'] = Client::all();
         return view('components.client.index', $data);
     }
 
