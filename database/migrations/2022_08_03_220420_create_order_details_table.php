@@ -19,6 +19,7 @@ return new class extends Migration {
             $table->string('name');
             $table->decimal('price', 15, 0);
             $table->string('amount');
+            $table->string('image');
         });
     }
 

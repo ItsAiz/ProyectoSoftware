@@ -142,24 +142,24 @@
             <div class="row" style="margin-top: 7rem;">
 
                 <div class="col-6 col-md-3 mx-auto">
-                    <img src="{{asset(url('images/popular/popularOne.jpg'))}}"
+                    <img src="{{asset('storage').'/'.$products[0]->image}}"
                          class="img-thumbnail rounded-circle img-fluid custom-levitation-effect" alt=""
                          id="mainImgSpecial">
-                    <h3 class="text-white text-center mt-2">Brownie con helado</h3>
+                    <h3 class="text-white text-center mt-2">{{$products[0]->name}}</h3>
                 </div>
 
                 <div class="col-6 col-md-3 mx-auto">
-                    <img src="{{asset(url('images/popular/popularTwo.jpg'))}}"
+                    <img src="{{asset('storage').'/'.$products[1]->image}}"
                          class="img-thumbnail rounded-circle img-fluid custom-levitation-effect" alt=""
                          id="mainImgSpecial">
-                    <h3 class="text-white text-center mt-2">Cóctel gota de limón</h3>
+                    <h3 class="text-white text-center mt-2">{{$products[1]->name}}</h3>
                 </div>
 
                 <div class="col-6 col-md-3 mx-auto">
-                    <img src="{{asset(url('images/popular/popularThree.jpg'))}}"
+                    <img src="{{asset('storage').'/'.$products[2]->image}}"
                          class="img-thumbnail rounded-circle img-fluid custom-levitation-effect" alt=""
                          id="mainImgSpecial">
-                    <h3 class="text-white text-center mt-2">Hamburguesa doble</h3>
+                    <h3 class="text-white text-center mt-2">{{$products[2]->name}}</h3>
                 </div>
 
             </div>

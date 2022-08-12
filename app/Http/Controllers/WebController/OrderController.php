@@ -135,7 +135,8 @@ class OrderController extends Controller
                 'domicile_sale_id' => $idSale,
                 'name' => $product->getAttribute('name'),
                 'price' => $product->getAttribute('price'),
-                'amount' => $product->getAttribute('stockAmount')
+                'amount' => $product->getAttribute('stockAmount'),
+                'image' => $product->getAttribute('image')
             ]);
             $productSold->save();
 

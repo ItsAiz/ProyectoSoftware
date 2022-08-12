@@ -18,7 +18,8 @@ class OrderDetail extends Model
         'domicile_sale_id',
         'name',
         'price',
-        'amount'
+        'amount',
+        'image'
     ];
 
     public function domicileSale(): BelongsTo

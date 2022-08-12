@@ -17,13 +17,6 @@
             <div class="carousel-inner">
 
                 <div class="carousel-item active">
-                    <img src="{{asset('images/slider/s1.png')}}" class="d-block w-100" alt="...">
-                    <div class="carousel-caption d-none d-md-block">
-                        <h5>Bebidas</h5>
-                    </div>
-                </div>
-
-                <div class="carousel-item">
                     <img src="{{asset('images/slider/s2.png')}}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Hamburguesas</h5>
@@ -31,9 +24,16 @@
                 </div>
 
                 <div class="carousel-item">
-                    <img src="{{asset('images/slider/s3.png ')}}" class="d-block w-100" alt="...">
+                    <img src="{{asset('images/slider/s3.png')}}" class="d-block w-100" alt="...">
                     <div class="carousel-caption d-none d-md-block">
                         <h5>Picadas</h5>
+                    </div>
+                </div>
+
+                <div class="carousel-item">
+                    <img src="{{asset('images/slider/s1.png ')}}" class="d-block w-100" alt="...">
+                    <div class="carousel-caption d-none d-md-block">
+                        <h5>Bebidas</h5>
                     </div>
                 </div>
 
@@ -55,7 +55,7 @@
 
     </section>
 
-    <section id="productos" class="bg-secondary text-light border"
+    <section id="productos" class="bg-secondary text-light border wallpaper w-Color-Two"
              style="border-color: rgba(255,255,255,0) !important;">
 
         <div class="container">
