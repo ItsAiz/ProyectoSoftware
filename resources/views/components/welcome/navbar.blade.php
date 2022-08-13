@@ -2,7 +2,7 @@
 
     <div class="container">
 
-        <a class="navbar-brand" href="#home">11&6 GASTRO-PUB</a>
+        <a class="navbar-brand" href="/">11&6 GASTRO-PUB</a>
 
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#menu"
                 aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation"

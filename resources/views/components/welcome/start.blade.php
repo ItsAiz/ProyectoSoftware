@@ -142,24 +142,24 @@
             <div class="row" style="margin-top: 7rem;">
 
                 <div class="col-6 col-md-3 mx-auto">
-                    <img src="{{asset('storage').'/'.$products[0]->image}}"
-                         class="img-thumbnail rounded-circle img-fluid custom-levitation-effect" alt=""
+                    <img src="{{ (array_key_exists(0, $products)) ? asset('storage').'/'.$products[0]->image : asset('images/popular/popularOne.png')}}"
+                         class="img-fluid custom-levitation-effect" alt=""
                          id="mainImgSpecial">
-                    <h3 class="text-white text-center mt-2">{{$products[0]->name}}</h3>
+                    <h3 class="text-white text-center mt-2">{{ (array_key_exists(0, $products)) ? $products[0]->name : 'Hamburguesa doble'}}</h3>
                 </div>
 
                 <div class="col-6 col-md-3 mx-auto">
-                    <img src="{{asset('storage').'/'.$products[1]->image}}"
-                         class="img-thumbnail rounded-circle img-fluid custom-levitation-effect" alt=""
+                    <img src="{{ (array_key_exists(1, $products)) ? asset('storage').'/'.$products[1]->image : asset('images/popular/popularTwo.png') }}"
+                         class="img-fluid custom-levitation-effect" alt=""
                          id="mainImgSpecial">
-                    <h3 class="text-white text-center mt-2">{{$products[1]->name}}</h3>
+                    <h3 class="text-white text-center mt-2">{{ (array_key_exists(1, $products)) ? $products[1]->name : 'Perro sencillo'}}</h3>
                 </div>
 
                 <div class="col-6 col-md-3 mx-auto">
-                    <img src="{{asset('storage').'/'.$products[2]->image}}"
-                         class="img-thumbnail rounded-circle img-fluid custom-levitation-effect" alt=""
+                    <img src="{{ (array_key_exists(2, $products)) ? asset('storage').'/'.$products[2]->image : asset('images/popular/popularThree.png') }}"
+                         class="img-fluid custom-levitation-effect" alt=""
                          id="mainImgSpecial">
-                    <h3 class="text-white text-center mt-2">{{$products[2]->name}}</h3>
+                    <h3 class="text-white text-center mt-2">{{ (array_key_exists(2, $products)) ? $products[2]->name : 'Porción de pizza'}}</h3>
                 </div>
 
             </div>
