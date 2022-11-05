@@ -19,7 +19,7 @@
 
                         <div class="col-md-6">
                             <input id="nameInput" type="text" class="custom-form form-control" name="name" value="{{ old('name') }}"
-                                autocomplete="name" autofocus>
+                                autocomplete="name" onkeydown="return /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/i.test(event.key)" autofocus>
 
                             <span class="invalid-feedback" role="alert" id="nameError">
                                 <strong></strong>
@@ -32,7 +32,7 @@
 
                         <div class="col-md-6">
                             <input id="lastNameInput" type="text" class="custom-form form-control" name="lastName" value="{{ old('lastNameInput') }}"
-                                   autocomplete="lastName" autofocus>
+                                   autocomplete="lastName"  onkeydown="return /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/i.test(event.key)" autofocus>
 
                             <span class="invalid-feedback" role="alert" id="lastNameError">
                                 <strong></strong>

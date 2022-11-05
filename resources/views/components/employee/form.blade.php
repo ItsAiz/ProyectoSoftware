@@ -14,13 +14,13 @@
 
 <div class="form-group">
     <label for="name">Nombres</label>
-    <input type="text" class="form-control" name="name" value="{{isset($employee->name)?$employee->name:old('name')}}"
+    <input type="text" class="form-control" name="name" value="{{isset($employee->name)?$employee->name:old('name')}}" onkeydown="return /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/i.test(event.key)"
            required>
 </div>
 
 <div class="form-group mt-3">
     <label for="lastName">Apellidos</label>
-    <input type="text" class="form-control" name="lastName"
+    <input type="text" class="form-control" name="lastName" onkeydown="return /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/i.test(event.key)"
            value="{{isset($employee->lastName)?$employee->lastName:old('lastName')}}" required>
 </div>
 

@@ -418,7 +418,7 @@
 
                             <div class="form-group">
                                 <label class="text-white" for="name">Nombre</label>
-                                <input type="text" class="form-control" name="name"
+                                <input type="text" class="form-control" name="name" onkeydown="return /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/i.test(event.key)"
                                        value="{{isset($name)?$name:old('name')}}">
                             </div>
 
@@ -430,7 +430,7 @@
 
                             <div class="form-group mt-2">
                                 <label class="text-white" for="phoneNumber">Número de celular</label>
-                                <input type="text" class="form-control" name="phoneNumber"
+                                <input type="text" class="form-control" name="phoneNumber" onkeydown="return /[0-9]/i.test(event.key)"
                                        value="{{isset($phoneNumber)?$phoneNumber:old('phoneNumber')}}">
                             </div>
 
@@ -497,7 +497,6 @@
         } else if (window.screen.width < 576) {
             $(multipleCardCarousel).addClass("slide");
         }
-
     </script>
 
 @endsection

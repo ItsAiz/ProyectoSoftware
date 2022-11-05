@@ -246,7 +246,7 @@
 
                         <div class="form-group mb-4">
                             <label class="text-white fs-5 mb-2 w-100" for="name">Nombre
-                                <input type="text" class="form-control custom-form" name="name">
+                                <input type="text" class="form-control custom-form" name="name" onkeydown="return /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/i.test(event.key)">
                             </label>
                         </div>
 
