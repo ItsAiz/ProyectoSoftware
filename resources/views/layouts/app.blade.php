@@ -222,6 +222,7 @@
 <script src="{{asset('js/app.js')}}"></script>
 <script src="{{asset('js/dashboardScript.js')}}"></script>
 <script src="{{asset('js/clockpicker.js')}}"></script>
+<script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 
 <!-- Script sections -->
 @yield('indexProductScript')
