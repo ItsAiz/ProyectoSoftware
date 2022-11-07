@@ -43,8 +43,7 @@ class ProductController extends Controller
 
         $product = new Product($data);
         $product->save();
-
-        return redirect('product/management')->with('message', 'Producto agregado correctamente');
+        return redirect('product/management')->with('message', 'successfulProductCreation');
     }
 
     public function edit(Product $product): Factory|View|Application
@@ -64,7 +63,7 @@ class ProductController extends Controller
         $product->update($data);
         $product->save();
 
-        return redirect('product/management')->with('message', 'Producto actualizado correctamente');
+        return redirect('product/management')->with('message', 'successfulProductUpdate');
     }
 
     public function destroy(Product $product): Redirector|Application|RedirectResponse
@@ -73,7 +72,7 @@ class ProductController extends Controller
             $product->delete();
         }
 
-        return redirect('product/management')->with('message', 'Producto eliminado correctamente');
+        return redirect('product/management')->with('message', 'successfulProductDeletion');
     }
 
 }

@@ -5,13 +5,6 @@
 
         <h1 class="text-center mb-4" style="font-family: 'Arial Rounded MT Bold', sans-serif">Empleados</h1>
 
-        @if(Session::has('message'))
-            <div class="alert alert-success alert-dismissible fade show">
-                {{Session::get('message')}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
         <a href="{{url('employee/create')}}" class="btn btn-success">Registrar nuevo empleado</a>
 
         <div class="mt-3 mb-3" style="overflow-x:auto;">
@@ -54,10 +47,11 @@
                         <td>
 
                             <a href="{{url('employee/edit/'.$employee->id)}}" class="btn btn-primary">Editar</a>
-                            <form action="{{url('/employee/destroy/'.$employee->id)}}" class="d-inline" method='post'>
+                            <form action="{{url('/employee/destroy/'.$employee->id)}}"
+                                  class="d-inline confirmation_alert" method='post'>
                                 @csrf
                                 {{method_field('DELETE')}}
-                                <input type='submit' onclick="return confirm('¿Desea borrar el empleado indicado?')" value="Borrar" class="btn btn-danger">
+                                <input type='submit' value="Borrar" class="btn btn-danger">
                             </form>
                         </td>
 
@@ -70,6 +64,59 @@
             </table>
 
         </div>
-        
+
     </div>
+@endsection
+
+@section('indexEmployeeScript')
+    <script>
+
+        @if(session('message') == 'successfulEmployeeCreation')
+        Swal.fire({
+            title: 'Empleado agregado correctamente',
+            icon: 'success',
+            confirmButtonColor: '#199605',
+        })
+        @endif
+
+        @if(session('message') == 'successfulEmployeeUpdate')
+        Swal.fire({
+            title: 'Empleado actualizado correctamente',
+            icon: 'success',
+            confirmButtonColor: '#199605',
+        })
+        @endif
+
+        @if(session('message') == 'successfulEmployeeDeletion')
+        Swal.fire({
+            title: 'Empleado eliminado correctamente',
+            icon: 'success',
+            confirmButtonColor: '#199605',
+        })
+        @endif
+
+        // Confirmation alert
+
+        $('.confirmation_alert').submit(function (e) {
+
+            e.preventDefault()
+
+            Swal.fire({
+                title: '¿Desea borrar el empleado indicado?',
+                text: "¡No podrás revertir esto!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Si, borrar',
+                cancelButtonText: 'Cancelar',
+                cancelButtonColor: '#d33',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+        })
+
+    </script>
 @endsection

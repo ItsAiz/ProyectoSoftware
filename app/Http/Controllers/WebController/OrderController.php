@@ -33,7 +33,7 @@ class OrderController extends Controller
         $result = $this->validateStock($product);
 
         if (!$result) {
-            return redirect()->route('makeOrder', $category)->with('errorMessage', 'No hay más unidades de este producto');
+            return redirect()->route('makeOrder', $category)->with('errorMessage', 'stockError');
         }
 
         return $this->addToTheList($product);
@@ -64,7 +64,7 @@ class OrderController extends Controller
             if ($item->id == $product->getAttribute('id')) {
 
                 if (($item->stockAmount + 1) > $product->getAttribute('stockAmount')) {
-                    return redirect()->route('makeOrder', $category)->with('errorMessage', 'No hay más unidades de este producto');
+                    return redirect()->route('makeOrder', $category)->with('errorMessage', 'stockError');
                 }
 
                 $item->stockAmount = ($item->stockAmount + 1);
@@ -146,7 +146,7 @@ class OrderController extends Controller
         }
 
         $this->emptyProductList();
-        return redirect()->route('makeOrder', 1)->with('message', 'Solicitud de domicilio realizada correctamente');
+        return redirect()->route('makeOrder', 1)->with('message', 'successfulDelivery');
     }
 
     private function emptyProductList()

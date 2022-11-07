@@ -5,20 +5,6 @@
 
         <h1 class="text-center mb-4" style="font-family: 'Arial Rounded MT Bold', sans-serif">Reservas</h1>
 
-        @if(\Illuminate\Support\Facades\Session::has('message'))
-            <div class="alert alert-success alert-dismissible fade show">
-                {{\Illuminate\Support\Facades\Session::get('message')}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
-        @if(session('errorMessage'))
-            <div class="alert alert-danger alert-dismissible fade show">
-                {{session('errorMessage')}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
         <a href="{{url('booking/create')}}" class="btn btn-success">Solicitar reserva</a>
 
         <div class="mt-3 mb-3" style="overflow-x:auto;">
@@ -53,11 +39,12 @@
                         <td>{{$booking->restaurantTable->chairNumbers}}</td>
                         <td>{{($booking->status == 0) ? 'En curso' : 'Finalizada'}}</td>
                         <td>
-                            <form action="{{url('/booking/destroy/'.$booking->id)}}" class="d-inline" method='post'>
+                            <form action="{{url('/booking/destroy/'.$booking->id)}}" class="d-inline confirmation_alert"
+                                  method='post'>
                                 @csrf
                                 {{method_field('DELETE')}}
-                                <input type='submit' onclick="return confirm('¿Desea cancelar la reserva?')"
-                                       value="Cancelar" class="btn btn-danger" @if($booking->status == 1) disabled @endif>
+                                <input type='submit' value="Cancelar" class="btn btn-danger"
+                                       @if($booking->status == 1) disabled @endif>
                             </form>
                         </td>
 
@@ -72,4 +59,65 @@
         </div>
 
     </div>
+@endsection
+
+@section('reservationScript')
+    <script>
+
+        @if(session('errorMessage') == 'tableReservationError')
+        Swal.fire({
+            title: 'Ya hay una reserva con esta mesa para la fecha seleccionada',
+            icon: 'error',
+            confirmButtonColor: '#da0e1e',
+        })
+        @endif
+
+        @if(session('message') == 'SuccessfulReservationCreation')
+        Swal.fire({
+            title: 'Solicitud de reserva realizada correctamente',
+            icon: 'success',
+            confirmButtonColor: '#199605',
+        })
+        @endif
+
+        @if(session('errorMessage') == 'reservationCancellationError')
+        Swal.fire({
+            title: 'No se ha podido cancelar la reserva',
+            icon: 'error',
+            confirmButtonColor: '#da0e1e',
+        })
+        @endif
+
+        @if(session('message') == 'successfulBookingCancellation')
+        Swal.fire({
+            title: 'Reserva cancelada correctamente',
+            icon: 'success',
+            confirmButtonColor: '#199605',
+        })
+        @endif
+
+        // Confirmation alert
+
+        $('.confirmation_alert').submit(function (e) {
+
+            e.preventDefault()
+
+            Swal.fire({
+                title: '¿Desea cancelar la reserva?',
+                text: "¡No podrás revertir esto!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Si, borrar',
+                cancelButtonText: 'Cancelar',
+                cancelButtonColor: '#d33',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+        })
+
+    </script>
 @endsection

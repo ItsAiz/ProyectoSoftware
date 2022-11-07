@@ -89,6 +89,6 @@ Route::get('/employee/management/{domicile}', [EmployeeActionController::class, 
 Route::post('/send/orders', [AdministratorActionController::class, 'sendOrders']);
 
 /* Ruta para crear enlace simbolico en el servidor */
-Route::get('link', function () {
+Route::get('/link', function () {
     Artisan::call('storage:link');
 })->middleware('auth');

@@ -224,7 +224,11 @@
 <script src="{{asset('js/clockpicker.js')}}"></script>
 
 <!-- Script sections -->
+@yield('indexProductScript')
+@yield('indexEmployeeScript')
 @yield('bookingScript')
+@yield('domicilesScript')
+@yield('reservationScript')
 
 </body>
 </html>

@@ -280,20 +280,6 @@
 
             <div class="col-12 col-lg-5 text-center">
 
-                @if(session('message'))
-                    <div class="alert alert-warning alert-dismissible fade show">
-                        {{session('message')}}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
-                @endif
-
-                @if(session('errorMessage'))
-                    <div class="alert alert-warning alert-dismissible fade show">
-                        {{session('errorMessage')}}
-                        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                    </div>
-                @endif
-
                 @if(session('listOfProducts') == null)
                     <img class="img-fluid" src="{{asset('images/orderBackground/bannerOrder.png')}}" width="300"
                          alt="..."/>
@@ -403,7 +389,8 @@
 
                     <div class="col-9 mt-2 mx-auto">
 
-                        <form action="{{url('/finalizeOrder')}}" method="post" enctype="multipart/form-data">
+                        <form class="confirmation_alert" action="{{url('/finalizeOrder')}}" method="post"
+                              enctype="multipart/form-data">
                             @csrf
 
                             @if(count($errors)>0)
@@ -418,7 +405,8 @@
 
                             <div class="form-group">
                                 <label class="text-white" for="name">Nombre</label>
-                                <input type="text" class="form-control" name="name" onkeydown="return /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/i.test(event.key)"
+                                <input type="text" class="form-control" name="name"
+                                       onkeydown="return /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/i.test(event.key)"
                                        value="{{isset($name)?$name:old('name')}}">
                             </div>
 
@@ -430,14 +418,13 @@
 
                             <div class="form-group mt-2">
                                 <label class="text-white" for="phoneNumber">Número de celular</label>
-                                <input type="text" class="form-control" name="phoneNumber" onkeydown="return /[0-9]/i.test(event.key)"
+                                <input type="number" class="form-control" name="phoneNumber"
+                                       min="1" pattern="^[0-9]+"
                                        value="{{isset($phoneNumber)?$phoneNumber:old('phoneNumber')}}">
                             </div>
 
                             <div class="mt-3 mb-3 d-flex align-items-end justify-content-center">
-                                <input type="submit" class="btn btn-warning"
-                                       onclick="return confirm('¿Desea finalizar el producto?')"
-                                       value="Confirmar pedido">
+                                <input type="submit" class="btn btn-warning" value="Confirmar pedido">
                             </div>
 
                         </form>
@@ -497,6 +484,47 @@
         } else if (window.screen.width < 576) {
             $(multipleCardCarousel).addClass("slide");
         }
+
+        // Confirmation alert
+
+        $('.confirmation_alert').submit(function (e) {
+
+            e.preventDefault()
+
+            Swal.fire({
+                title: '¿Desea finalizar la orden?',
+                text: "¡No podrás revertir esto!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Si, finalizar',
+                cancelButtonText: 'Cancelar',
+                cancelButtonColor: '#d33',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+        })
+
+        @if(session('errorMessage') == 'stockError')
+        Swal.fire({
+            title: 'No hay más unidades de este producto',
+            icon: 'error',
+            confirmButtonColor: '#da0e1e',
+        })
+        @endif
+
+        @if(session('message') == 'successfulDelivery')
+        Swal.fire({
+            title: 'Solicitud de domicilio realizada correctamente',
+            text: 'Cualquier inquietud no dudes en contactarnos.',
+            icon: 'success',
+            confirmButtonColor: '#199605',
+        })
+        @endif
+
     </script>
 
 @endsection

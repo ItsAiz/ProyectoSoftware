@@ -142,23 +142,26 @@
             <div class="row" style="margin-top: 7rem;">
 
                 <div class="col-6 col-md-3 mx-auto">
-                    <img src="{{ (array_key_exists(0, $products)) ? asset('storage').'/'.$products[0]->image : asset('images/popular/popularOne.png')}}"
-                         class="img-fluid custom-levitation-effect" alt=""
-                         id="mainImgSpecial">
+                    <img
+                        src="{{ (array_key_exists(0, $products)) ? asset('storage').'/'.$products[0]->image : asset('images/popular/popularOne.png')}}"
+                        class="img-fluid custom-levitation-effect" alt=""
+                        id="mainImgSpecial">
                     <h3 class="text-white text-center mt-2">{{ (array_key_exists(0, $products)) ? $products[0]->name : 'Hamburguesa doble'}}</h3>
                 </div>
 
                 <div class="col-6 col-md-3 mx-auto">
-                    <img src="{{ (array_key_exists(1, $products)) ? asset('storage').'/'.$products[1]->image : asset('images/popular/popularTwo.png') }}"
-                         class="img-fluid custom-levitation-effect" alt=""
-                         id="mainImgSpecial">
+                    <img
+                        src="{{ (array_key_exists(1, $products)) ? asset('storage').'/'.$products[1]->image : asset('images/popular/popularTwo.png') }}"
+                        class="img-fluid custom-levitation-effect" alt=""
+                        id="mainImgSpecial">
                     <h3 class="text-white text-center mt-2">{{ (array_key_exists(1, $products)) ? $products[1]->name : 'Perro sencillo'}}</h3>
                 </div>
 
                 <div class="col-6 col-md-3 mx-auto">
-                    <img src="{{ (array_key_exists(2, $products)) ? asset('storage').'/'.$products[2]->image : asset('images/popular/popularThree.png') }}"
-                         class="img-fluid custom-levitation-effect" alt=""
-                         id="mainImgSpecial">
+                    <img
+                        src="{{ (array_key_exists(2, $products)) ? asset('storage').'/'.$products[2]->image : asset('images/popular/popularThree.png') }}"
+                        class="img-fluid custom-levitation-effect" alt=""
+                        id="mainImgSpecial">
                     <h3 class="text-white text-center mt-2">{{ (array_key_exists(2, $products)) ? $products[2]->name : 'Porción de pizza'}}</h3>
                 </div>
 
@@ -246,7 +249,8 @@
 
                         <div class="form-group mb-4">
                             <label class="text-white fs-5 mb-2 w-100" for="name">Nombre
-                                <input type="text" class="form-control custom-form" name="name" onkeydown="return /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/i.test(event.key)">
+                                <input type="text" class="form-control custom-form" name="name"
+                                       onkeydown="return /^[A-Za-zÁÉÍÓÚáéíóúñÑ ]+$/i.test(event.key)">
                             </label>
                         </div>
 
@@ -271,13 +275,6 @@
 
                     </form>
 
-                    @if(session('message'))
-                        <div class="alert alert-success alert-dismissible fade show mt-2">
-                            {{session('message')}}
-                            <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-                        </div>
-                    @endif
-
                 </div>
 
             </div>
@@ -285,5 +282,21 @@
         </div>
 
     </section>
+
+@endsection
+
+@section('startScript')
+
+    <script>
+
+        @if(session('message') == 'successfulMessage')
+        Swal.fire({
+            title: 'Mensaje enviado correctamente',
+            icon: 'success',
+            confirmButtonColor: '#199605',
+        })
+        @endif
+
+    </script>
 
 @endsection

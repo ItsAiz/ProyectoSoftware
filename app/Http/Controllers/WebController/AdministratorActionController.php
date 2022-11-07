@@ -30,7 +30,7 @@ class AdministratorActionController extends Controller
 
         Mail::to('11y6gastropub@gmail.com')->send($newEmail);
 
-        return redirect()->route('domiciles/management')->with('message', 'Información guardada');
+        return redirect()->route('domiciles/management')->with('message', 'informationSavedSuccessfully');
     }
 
 }

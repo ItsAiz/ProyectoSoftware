@@ -5,13 +5,6 @@
 
         <h1 class="text-center mb-4" style="font-family: 'Arial Rounded MT Bold', sans-serif">Productos</h1>
 
-        @if(\Illuminate\Support\Facades\Session::has('message'))
-            <div class="alert alert-success alert-dismissible fade show">
-                {{\Illuminate\Support\Facades\Session::get('message')}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
         <a href="{{url('product/create')}}" class="btn btn-success">Registrar nuevo producto</a>
 
         <div class="mt-3 mb-3" style="overflow-x:auto;">
@@ -59,11 +52,11 @@
 
                             <a href="{{url('product/edit/'.$product->id)}}" class="btn btn-primary">Editar</a>
 
-                            <form action="{{url('/product/destroy/'.$product->id)}}" class="d-inline" method='post'>
+                            <form action="{{url('/product/destroy/'.$product->id)}}" class="d-inline confirmation_alert"
+                                  method='post'>
                                 @csrf
                                 {{method_field('DELETE')}}
-                                <input type='submit' onclick="return confirm('¿Desea borrar el producto?')"
-                                       value="Borrar" class="btn btn-danger">
+                                <input type='submit' value="Borrar" class="btn btn-danger">
                             </form>
 
                         </td>
@@ -79,4 +72,57 @@
         </div>
 
     </div>
+@endsection
+
+@section('indexProductScript')
+    <script>
+
+        @if(session('message') == 'successfulProductCreation')
+        Swal.fire({
+            title: 'Producto agregado correctamente',
+            icon: 'success',
+            confirmButtonColor: '#199605',
+        })
+        @endif
+
+        @if(session('message') == 'successfulProductUpdate')
+        Swal.fire({
+            title: 'Producto actualizado correctamente',
+            icon: 'success',
+            confirmButtonColor: '#199605',
+        })
+        @endif
+
+        @if(session('message') == 'successfulProductDeletion')
+        Swal.fire({
+            title: 'Producto eliminado correctamente',
+            icon: 'success',
+            confirmButtonColor: '#199605',
+        })
+        @endif
+
+        // Confirmation alert
+
+        $('.confirmation_alert').submit(function (e) {
+
+            e.preventDefault()
+
+            Swal.fire({
+                title: '¿Desea borrar el producto?',
+                text: "¡No podrás revertir esto!",
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonColor: '#3085d6',
+                confirmButtonText: 'Si, borrar',
+                cancelButtonText: 'Cancelar',
+                cancelButtonColor: '#d33',
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    this.submit();
+                }
+            })
+
+        })
+
+    </script>
 @endsection

@@ -56,7 +56,7 @@ class EmployeeController extends Controller
         ]);
         $employee->save();
 
-        return redirect('employee/management')->with('message', 'Empleado agregado correctamente');
+        return redirect('employee/management')->with('message', 'successfulEmployeeCreation');
     }
 
     public function edit(Employee $employee): Factory|View|Application
@@ -68,7 +68,7 @@ class EmployeeController extends Controller
     {
         $employee->update($request->all());
         $employee->save();
-        return redirect('employee/management')->with('message', 'Empleado actualizado correctamente');
+        return redirect('employee/management')->with('message', 'successfulEmployeeUpdate');
     }
 
     public function destroy(Employee $employee): Redirector|Application|RedirectResponse
@@ -76,7 +76,7 @@ class EmployeeController extends Controller
         $user = User::all()->find($employee->getAttribute('user_id'));
         $user->delete();
         $employee->delete();
-        return redirect('employee/management')->with('message', 'Empleado eliminado correctamente');
+        return redirect('employee/management')->with('message', 'successfulEmployeeDeletion');
     }
 
 }

@@ -38,7 +38,7 @@ class WelcomeController extends Controller
     {
         $newEmail = new SendMessage($request);
         Mail::to('11y6gastropub@gmail.com')->send($newEmail);
-        return redirect()->route('start', '#contact')->with('message', 'Mensaje enviado correctamente');
+        return redirect()->route('start')->with('message', 'successfulMessage');
     }
 
     public function getMenu(): Factory|View|Application

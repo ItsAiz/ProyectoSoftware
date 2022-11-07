@@ -40,7 +40,7 @@ class BookingController extends Controller
     {
         if (sizeof($this->validateTable($request)) > 0) {
             return redirect()->route('booking/create')->with([
-                'errorMessage' => 'Ya hay una reserva con esta mesa para la fecha seleccionada'
+                'errorMessage' => 'tableReservationError'
             ])->withInput();
         }
 
@@ -56,7 +56,7 @@ class BookingController extends Controller
         ]);
         $booking->save();
 
-        return redirect('booking')->with('message', 'Solicitud de reserva realizada correctamente');
+        return redirect('booking')->with('message', 'SuccessfulReservationCreation');
     }
 
     private function validateTable($request): Collection
@@ -71,11 +71,11 @@ class BookingController extends Controller
         $result = Carbon::now()->gt(Carbon::create($booking->getAttribute('bookingDate')));
 
         if ($result) {
-            return redirect('booking')->with('errorMessage', 'No se ha podido cancelar la reserva');
+            return redirect('booking')->with('errorMessage', 'reservationCancellationError');
         }
 
         $booking->delete();
-        return redirect('booking')->with('message', 'Reserva cancelada correctamente');
+        return redirect('booking')->with('message', 'successfulBookingCancellation');
     }
 
 }

@@ -57,6 +57,7 @@
 @yield('navbarScript')
 @yield('loginScript')
 @yield('registerScript')
+@yield('startScript')
 @yield('makeOrderScript')
 
 </body>

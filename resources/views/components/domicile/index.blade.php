@@ -5,13 +5,6 @@
 
         <h1 class="text-center mb-4" style="font-family: 'Arial Rounded MT Bold', sans-serif">Domicilios</h1>
 
-        @if(Session::has('message'))
-            <div class="alert alert-success alert-dismissible fade show">
-                {{Session::get('message')}}
-                <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
-            </div>
-        @endif
-
         <form action="{{url('send/orders')}}" class="d-inline" method='post'>
             @csrf
             {{method_field('POST')}}
@@ -58,4 +51,19 @@
         </div>
     </div>
 
+@endsection
+
+@section('domicilesScript')
+    <script>
+
+        @if(session('message') == 'informationSavedSuccessfully')
+        Swal.fire({
+            title: 'Información guardada',
+            text: 'Por favor verifica tu correo electronico.',
+            icon: 'success',
+            confirmButtonColor: '#199605',
+        })
+        @endif
+
+    </script>
 @endsection
