@@ -66,6 +66,7 @@ Route::get('/makeOrder/{category}', [OrderController::class, 'getMakeOrder'])->n
 Route::get('/addProduct/{product}', [OrderController::class, 'addProduct']);
 Route::delete('/removeProduct', [OrderController::class, 'removeProduct']);
 Route::post('/finalizeOrder', [OrderController::class, 'finalizeOrder']);
+Route::get('/downloadBill', [OrderController::class, 'downloadBill']);
 
 /* Rutas de solicitud de reservas */
 Route::get('/booking', [BookingController::class, 'index'])->name('booking');

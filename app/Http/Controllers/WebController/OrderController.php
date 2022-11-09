@@ -10,12 +10,14 @@ use App\Models\DomicileSale;
 use App\Models\OrderDetail;
 use App\Models\Product;
 use App\Models\User;
+use Barryvdh\DomPDF\Facade\Pdf;
 use Carbon\Carbon;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\View\View;
 use Illuminate\Http\RedirectResponse;
 use Illuminate\Http\Request;
+use Illuminate\Http\Response;
 use Illuminate\Support\Facades\Auth;
 
 class OrderController extends Controller
@@ -145,13 +147,31 @@ class OrderController extends Controller
             $updatedProduct->save();
         }
 
+        session(['nameBill' => $request->get('name')]);
+        session(['addressBill' => $request->get('address')]);
+        session(['phoneNumberBill' => $request->get('phoneNumber')]);
+        session(['productsBill' => $this->getListProducts()]);
+        session(['totalBill' => $this->getTotal()]);
+        session(['download.in.the.next.request' => 'downloadBill']);
+
         $this->emptyProductList();
+
         return redirect()->route('makeOrder', 1)->with('message', 'successfulDelivery');
     }
 
     private function emptyProductList()
     {
         $this->saveProducts(null);
+    }
+
+    public function downloadBill(): Response
+    {
+        session(['download.in.the.next.request' => false]);
+
+        $pdf = Pdf::loadView('components.download.bill');
+        $pdf->setPaper('A3');
+
+        return $pdf->download('Solicitud_Domicilio' . '.pdf');
     }
 
 }

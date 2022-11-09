@@ -8,6 +8,10 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
+    @if(session('download.in.the.next.request'))
+        <meta http-equiv="refresh" content="0;url=http://127.0.0.1:8000/downloadBill">
+    @endif
+
     <!-- CSRF Token -->
     <meta name="csrf-token" content="{{ csrf_token() }}">
 
@@ -53,6 +57,18 @@
 <!-- Scripts -->
 <script src="{{asset('js/app.js')}}"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+
+<script>
+    window.addEventListener( "pageshow", function ( event ) {
+        let historyTraversal = event.persisted ||
+            ( typeof window.performance != "undefined" &&
+                window.performance.navigation.type === 2 );
+        if ( historyTraversal ) {
+
+            window.location.reload();
+        }
+    });
+</script>
 
 <!-- Script sections -->
 @yield('navbarScript')

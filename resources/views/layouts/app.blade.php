@@ -223,6 +223,17 @@
 <script src="{{asset('js/dashboardScript.js')}}"></script>
 <script src="{{asset('js/clockpicker.js')}}"></script>
 <script src="//cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+<script>
+    window.addEventListener("pageshow", function (event) {
+        let historyTraversal = event.persisted ||
+            (typeof window.performance != "undefined" &&
+                window.performance.navigation.type === 2);
+        if (historyTraversal) {
+
+            window.location.reload();
+        }
+    });
+</script>
 
 <!-- Script sections -->
 @yield('indexProductScript')
