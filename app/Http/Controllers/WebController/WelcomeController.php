@@ -5,6 +5,8 @@ namespace App\Http\Controllers\WebController;
 use App\Http\Controllers\Controller;
 use App\Http\Requests\Mail\EmailRequest;
 use App\Mail\SendMessage;
+use App\Models\Booking;
+use Carbon\Carbon;
 use Illuminate\Contracts\View\Factory;
 use Illuminate\Contracts\Foundation\Application;
 use Illuminate\Contracts\View\View;
@@ -16,8 +18,24 @@ use Symfony\Component\HttpFoundation\BinaryFileResponse;
 
 class WelcomeController extends Controller
 {
-    public function getStart(): Factory|View|Application
+    public function getStart()
     {
+        $bookings = Booking::all();
+        $dateActual = Carbon::now();
+        foreach ($bookings as $booking){
+            $result = $dateActual->gte(Carbon::create($booking->getAttribute('bookingDate')));
+            $dateHour = $dateActual->format('H:i');
+            $dateHour = intval(str_replace(":",'',$dateHour));
+            $dateHBooking = $booking->getAttribute('bookingHour');
+            $datHeBooking = intval(str_replace(":",'',$dateHBooking));
+            if ($result){
+                if($dateHour >= $datHeBooking){
+                    if ($booking->getAttribute('status') == 0){
+                        $booking->delete();
+                    }
+                }
+            }
+        }
         $details = DB::table('order_details')
             ->select('name', 'image', DB::raw('SUM(amount) as total'))
             ->groupBy('name', 'image')

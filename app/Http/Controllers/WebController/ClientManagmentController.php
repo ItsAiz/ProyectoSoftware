@@ -41,6 +41,7 @@ class ClientManagmentController extends Controller
     public function bookings(Client $client): Factory|View|Application
     {
         $bookings = Booking::all()->where('client_id', '=', $client->getAttribute('id'));
+
         return view('components.client.booking')->with(['bookings' => $bookings, 'client' => $client]);
     }
 

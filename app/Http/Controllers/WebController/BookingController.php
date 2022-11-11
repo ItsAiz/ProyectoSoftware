@@ -14,6 +14,7 @@ use Illuminate\Http\RedirectResponse;
 use Illuminate\Contracts\View\Factory;
 use App\Http\Requests\Booking\BookingRequest;
 use Illuminate\Contracts\Foundation\Application;
+use phpDocumentor\Reflection\Types\False_;
 
 class BookingController extends Controller
 {
@@ -45,7 +46,11 @@ class BookingController extends Controller
         }
 
         $user = User::all()->find(Auth::id());
-
+        $dateActual = Carbon::now();
+        $dateHour = $dateActual->format('H:i');
+        $dateHour = intval(str_replace(":",'',$dateHour));
+        $dateHBooking = $request->get('bookingHour');
+        $datHeBooking = intval(str_replace(":",'',$dateHBooking));
         $booking = new Booking([
             'bookingDate' => $request->get('bookingDate'),
             'bookingHour' => $request->get('bookingHour'),
@@ -54,9 +59,13 @@ class BookingController extends Controller
             'status' => 0,
             'client_id' => $user->client->id
         ]);
-        $booking->save();
+        if($datHeBooking > $dateHour){
+            $booking->save();
+            return redirect('booking')->with('message', 'SuccessfulReservationCreation');
+        }else{
+            return redirect('booking/create')->with('errorMessage', 'Error al solicitar la reserva, verifique los datos');
+        }
 
-        return redirect('booking')->with('message', 'SuccessfulReservationCreation');
     }
 
     private function validateTable($request): Collection
@@ -66,14 +75,20 @@ class BookingController extends Controller
             ->where('restaurant_table_id', '=', $request->get('restaurant_table_id'));
     }
 
-    public function destroy(Booking $booking): Redirector|Application|RedirectResponse
+    public function destroy(Booking $booking)
     {
-        $result = Carbon::now()->gt(Carbon::create($booking->getAttribute('bookingDate')));
-
+        $dateActual = Carbon::now();
+        $result = $dateActual->lte(Carbon::create($booking->getAttribute('bookingDate')));
+        $dateHour = $dateActual->format('H:i');
+        $dateHour = intval(str_replace(":",'',$dateHour));
+        $dateHBooking = $booking->getAttribute('bookingHour');
+        $datHeBooking = intval(str_replace(":",'',$dateHBooking));
         if ($result) {
             return redirect('booking')->with('errorMessage', 'reservationCancellationError');
         }
-
+        if ($dateHour >= $datHeBooking){
+            return redirect('booking')->with('errorMessage', 'reservationCancellationError');
+        }
         $booking->delete();
         return redirect('booking')->with('message', 'successfulBookingCancellation');
     }
